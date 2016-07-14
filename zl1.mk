@@ -128,7 +128,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     qcom.hw.aac.encoder=true \
     use.qti.sw.alac.decoder=true \
     use.qti.sw.ape.decoder=true \
-    flac.sw.decoder.24bit.support=true
+    flac.sw.decoder.24bit.support=true \
+    ro.audio.offload_wakelock=false
 
 include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
 
