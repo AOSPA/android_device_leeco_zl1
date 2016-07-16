@@ -129,7 +129,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.multiaac.enable=true \
     audio.offload.multiple.enabled=true \
     audio.offload.passthrough=false \
-    qcom.hw.aac.encoder=true
+    qcom.hw.aac.encoder=true \
+    flac.sw.decoder.24bit.support=true
 
 include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
 
@@ -246,7 +247,8 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libOmxVidcCommon \
     libmm-omxcore \
-    libstagefrighthw
+    libstagefrighthw \
+    libstagefright_soft_flacenc
 
 # RIL
 PRODUCT_PACKAGES += \
