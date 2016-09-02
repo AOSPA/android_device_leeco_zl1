@@ -91,6 +91,7 @@ persist.camera.stats.test=5
 # VIDC
 vidc.enc.dcvs.extra-buff-count=2
 vidc.debug.perf.mode=2
+vidc.enc.disable.pq=true
 
 # NetMgrd
 ro.use_data_netmgrd=true
