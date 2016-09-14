@@ -93,6 +93,9 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
     init.qcom.post_boot.sh
 
+# QPerformance
+PRODUCT_BOOT_JARS += QPerformance
+
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 420dpi
