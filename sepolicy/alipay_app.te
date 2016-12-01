@@ -1,0 +1,6 @@
+# Generally based on untrusted_app.te
+
+type alipay_app, domain;
+app_domain(alipay_app)
+net_domain(alipay_app)
+bluetooth_domain(alipay_app)
