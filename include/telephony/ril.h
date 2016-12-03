@@ -604,7 +604,6 @@ typedef struct {
 } RIL_Dial;
 
 typedef struct {
-    int cla;
     int command;    /* one of the commands listed for TS 27.007 +CRSM*/
     int fileid;     /* EF id */
     char *path;     /* "pathid" from TS 27.007 +CRSM command.
@@ -619,7 +618,6 @@ typedef struct {
 } RIL_SIM_IO_v5;
 
 typedef struct {
-    int cla;
     int command;    /* one of the commands listed for TS 27.007 +CRSM*/
     int fileid;     /* EF id */
     char *path;     /* "pathid" from TS 27.007 +CRSM command.
