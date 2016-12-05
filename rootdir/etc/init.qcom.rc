@@ -25,6 +25,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import init.letv.rc
+import init.letv.usb.rc
 import init.qcom.power.rc
 import init.qcom.usb.rc
 import init.target.rc
@@ -47,7 +49,7 @@ on init
 
     # change for usb typec headset prop
     chown media media /sys/module/snd_soc_msm8996/parameters/usb_typec_swap
-    chown media media /sys/module/snd_soc_wcd_mbhc/parameters/headset_swap_backmic
+    chown media media /sys/module/snd_soc_wcd_mbhc_zl1/parameters/headset_swap_backmic
     chown media media /sys/devices/virtual/typec/typec_device/supported_dev
     chown media media /sys/module/cyccg/parameters/typec_headset_with_analog
 
@@ -159,18 +161,26 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet_ipa5/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_ipa6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_ipa7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/sit0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/sit1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/sit2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/sit3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/sit4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/sit5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/sit6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/sit7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/bond0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/bond1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/bond2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/bond3/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_usb0/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_usb1/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_usb2/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_usb3/accept_ra 2
 
     # To prevent out of order acknowledgements from making
     # connection tracking to treat them as not belonging to
@@ -193,17 +203,6 @@ on boot
     # change this when HAL3 is working
     setprop persist.camera.HAL3.enabled 0
 
-    # sleep_sign used by DebugUtils APP
-    chown system system /sys/class/leds/blue/sleep_sign
-    chmod 0666 /sys/class/leds/blue/sleep_sign
-    
-    # for fingerprint calibration
-    chown system system /persist/qc_senseid/bg_estimation/bg_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small1_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small1_off_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small2_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small2_off_basis.dat
-
     # Create a directory for Battery Daemon logs
     mkdir /data/battd 0755 log log
     # to mkdir for letv bootvideo feature
@@ -212,38 +211,6 @@ on boot
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/blink
     
-#for WiHD
-    chown root system /sys/devices/virtual/video/sii6400/mode
-    chown root system /sys/devices/virtual/video/sii6400/wihd/connect
-    chown root system /sys/devices/virtual/video/sii6400/wihd/state
-    chown root system /sys/devices/virtual/video/sii6400/wihd/wvan/join
-    chown root system /sys/devices/virtual/video/sii6400/wihd/wvan/scan
-    chown root system /sys/devices/virtual/video/sii6400/wihd/wvan/connection_status
-    chown root system /sys/devices/virtual/video/sii6400/wihd/wvan/scan_duration
-    chown root system /sys/devices/virtual/video/sii6400/wihd/wvan/scan_interval
-    chown root system /sys/devices/virtual/video/sii6400/debug_level
-    chown root system /sys/devices/virtual/video/sii6400/mhl/rap/out
-    chown root system /sys/devices/virtual/video/sii6400/mhl/rap/input_dev
-    chown root system /sys/devices/virtual/video/sii6400/mhl/rcp/out
-    chown root system /sys/devices/virtual/video/sii6400/mhl/rcp/input_dev
-    chown root system /sys/devices/virtual/video/sii6400/mhl/ucp/out
-    chown root system /sys/devices/virtual/video/sii6400/mhl/ucp/input_dev
-    chown root system /sys/devices/virtual/video/sii6400/devcap/local
-    chown root system /sys/devices/virtual/video/sii6400/devcap/local_offset
-    chown root system /sys/devices/virtual/video/sii6400/devcap/remote
-    chown root system /sys/devices/virtual/video/sii6400/devcap/remote_offset
-    chown root system /sys/devices/virtual/video/sii6400/wihd/hdcp/policy
-    chown root system /sys/devices/virtual/video/sii6400/wihd/hdcp/stream_type
-    chown root system /sys/devices/virtual/video/sii6400/wihd/remote_control/in
-    chown root system /sys/devices/virtual/video/sii6400/wihd/remote_control/out
-    chown root system /sys/devices/virtual/video/sii6400/wihd/remote_control/input_dev
-    chown root system /sys/devices/virtual/video/sii6400/wihd/self/connect_timeout
-    chown root system /sys/devices/virtual/video/sii6400/wihd/cec/out
-
-   # LiveDisplay
-    chown system system /sys/devices/virtual/graphics/fb0/rgb
-    chmod 664 /sys/devices/virtual/graphics/fb0/rgb
-
     # load ufsd modules
     insmod /system/lib/modules/jnl.ko
     insmod /system/lib/modules/ufsd.ko
@@ -252,14 +219,6 @@ on boot
     chown system system /sys/class/leds/blue/sleep_sign
     chmod 0666 /sys/class/leds/blue/sleep_sign
     
-    # for fingerprint calibration
-    chown system system /persist/qc_senseid/bg_estimation/bg_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small1_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small1_off_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small2_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small2_off_basis.dat
-    setprop config.disable_vr false
-
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/blink
@@ -274,16 +233,10 @@ on boot
     chmod 0666 /dev/ttyHSL1
 
      # wake_gesture
-    chown system system /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input3/wake_gesture
+    chown system system /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input3/wake_gesture
 on post-fs
-    #change permissions for /dev/ssr_monitor_dev
-    chown system system /proc/ssr_monitor_dev
-    chmod 0666 /proc/ssr_monitor_dev
-
     # Create a directory for Battery Daemon logs
     mkdir /data/battd 0755 log log
-    # to mkdir for letv bootvideo feature
-    mkdir /data/fastplay 0777 system system
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -875,21 +828,21 @@ service battery_monitor /system/bin/battery_monitor
     group system
     disabled
 
-service ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket sap_uim_socket1 stream 660 bluetooth bluetooth
-    socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log wakelock
-
 service ril-daemon2 /system/bin/rild -c 2
     class main
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user root
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log wakelock
+    disabled
+    group radio cache inet misc audio log readproc wakelock qcom_diag
 
+service ril-daemon3 /system/bin/rild -c 3
+    class main
+    socket rild3 stream 660 root radio
+    socket rild-debug3 stream 660 radio system
+    user root
+    disabled
+    group radio cache inet misc audio log readproc wakelock qcom_diag
 
 service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
     class late_start

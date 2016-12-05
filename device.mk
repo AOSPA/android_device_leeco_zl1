@@ -19,7 +19,7 @@
 # product configuration (apps).
 #
 
-$(call inherit-product, vendor/leeco/zl1/zl1-vendor.mk)
+$(call inherit-product, vendor/leeco/le_zl1/le_zl1-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
@@ -83,6 +83,7 @@ PRODUCT_PACKAGES += \
     init.qcom.power.rc \
     qfp_boot.sh \
     init.qcom.rc \
+    init.letv.rc \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
@@ -95,7 +96,7 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/leeco/zl1/prebuilt/system,system)
+    $(call find-copy-subdir-files,*,device/leeco/le_zl1/prebuilt/system,system)
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -265,3 +266,7 @@ PRODUCT_PACKAGES += \
 #IR
 PRODUCT_PACKAGES += \
     consumerir.default
+
+PRODUCT_PACKAGES += \
+    gatekeeper.msm8996 \
+    keystore.msm8996

@@ -18,10 +18,9 @@
 # device-specific aspects (drivers) with a device-agnostic
 # product configuration (apps).
 #
-#-include vendor/leeco/zl1/BoardConfigVendor.mk
--include vendor/leeco/zl1/BoardConfigVendor.mk
+-include vendor/leeco/le_zl1/BoardConfigVendor.mk
 
-BOARD_PATH := device/leeco/zl1
+BOARD_PATH := device/leeco/le_zl1
 BOARD_VENDOR := leeco
 
 TARGET_NO_BOOTLOADER := true
@@ -186,6 +185,9 @@ TARGET_INCREASES_COLDBOOT_TIMEOUT := true
 # CNE and DPM
 TARGET_LDPRELOAD := libNimsWrap.so
 BOARD_USES_QCNE := true
+
+# Legacy Blobs
+TARGET_NEEDS_TEXT_RELOCATIONS := true
 
 # selinux
 include device/qcom/sepolicy/sepolicy.mk
