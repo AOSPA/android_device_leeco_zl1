@@ -110,6 +110,8 @@ char const*const GREEN_BLINK_FILE
 char const*const BLUE_BLINK_FILE
         = "/sys/class/leds/blue/blink";
 
+#define ZL1_MAX_BRIGHTNESS 4095
+
 #define RAMP_SIZE 8
 static int BRIGHTNESS_RAMP[RAMP_SIZE]
         = { 0, 12, 25, 37, 50, 72, 85, 100 };
@@ -189,6 +191,9 @@ set_light_backlight(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
+
+    brightness = (brightness / 255.0) * ZL1_MAX_BRIGHTNESS;
+
     if(!dev) {
         return -1;
     }

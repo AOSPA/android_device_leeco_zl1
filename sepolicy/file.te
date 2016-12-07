@@ -1,7 +1,10 @@
-type fpc_data_file, file_type;
-type fpc_images_file, file_type;
-type sysfs_fpc_irq, fs_type, sysfs_type;
-type sysfs_fpc_proximity, sysfs_type, fs_type;
 type proc_touchpanel, fs_type;
 type nv_data_file, file_type;
 type sysfs_vibrator, fs_type, sysfs_type;
+
+
+# daizhiling add for goodix_fingerprint begin
+# Type for Goodix fingerprint template file.
+type gx_fp_lib_file, file_type, data_file_type;
+type gx_fpd_lib_file, data_file_type;
+type gx_fpd_data_file, file_type, data_file_type;

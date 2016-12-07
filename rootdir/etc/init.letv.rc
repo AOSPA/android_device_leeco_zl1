@@ -1,0 +1,93 @@
+on boot
+    # for system UI controlled torch
+    chown system system /sys/class/leds/torch-light0/brightness
+    chown system system /sys/class/leds/torch-light1/brightness
+    chmod 0666 /sys/class/leds/torch-light0/brightness
+    chmod 0666 /sys/class/leds/torch-light1/brightness
+
+    # sleep_sign used by DebugUtils APP
+    chown system system /sys/class/leds/blue/sleep_sign
+    chmod 0666 /sys/class/leds/blue/sleep_sign
+    # for fingerprint calibration
+    chown system system /persist/qc_senseid/bg_estimation/bg_basis.dat
+    chown system system /persist/qc_senseid/bg_estimation/bg_small1_basis.dat
+    chown system system /persist/qc_senseid/bg_estimation/bg_small1_off_basis.dat
+    chown system system /persist/qc_senseid/bg_estimation/bg_small2_basis.dat
+    chown system system /persist/qc_senseid/bg_estimation/bg_small2_off_basis.dat
+
+    chown system system /dev/goodix_fp
+    chmod 0644 /dev/goodix_fp
+    chmod 0644 /dev/smartpa_f0_detect
+
+    chown system system /sys/class/power_supply/battery/system_scn
+    chmod 0660 /sys/class/power_supply/battery/system_scn
+
+    #change for fade in/out
+    chown media media /dev/dsm_ctrl_dev
+    chown media media /system/bin/dsm_ctrl
+    chown media media /system/bin/dsm_fade
+    chown media media /sys/module/snd_soc_max98927/parameters/fade_in_out
+    chmod 0600 /dev/dsm_ctrl_dev
+    chmod 0700 /system/bin/dsm_ctrl
+    chmod 0700 /system/bin/dsm_fade
+
+service gx_fpd /system/bin/gx_fpd
+    class late_start
+    user system
+    group input
+    writepid /dev/cpuset/system-background/tasks
+
+on property:sys.boot_completed=1 && property:persist.sys.tcpdump=1 && property:persist.sys.zeusis.beta=1
+    mkdir /sdcard/tcpdump 0771 root sdcard_rw
+    start tcpdumpd
+
+on property:persist.sys.tcpdump=0
+    stop tcpdumpd
+
+on property:persist.sys.zeusis.beta=0
+    stop tcpdumpd
+
+service tcpdumpd /system/xbin/tcpdump -i any -s 0 -C 20 -W 10 -w sdcard/tcpdump/tcpdump.cap
+    class main
+    disabled
+
+#  sys.sysctl.led.brightness
+on property:sys.sysctl.led.brightness=*
+   write /sys/class/leds/button-backlight/brightness ${sys.sysctl.led.brightness}
+
+#  sys.sysctl.led.red
+on property:sys.sysctl.led.red=*
+   write /sys/class/leds/red/brightness ${sys.sysctl.led.red}
+
+#  sys.sysctl.led.green
+on property:sys.sysctl.led.green=*
+   write /sys/class/leds/green/brightness ${sys.sysctl.led.green}
+
+#  sys.sysctl.led.blue
+on property:sys.sysctl.led.blue=*
+   write /sys/class/leds/blue/brightness ${sys.sysctl.led.blue}
+
+#  sys.sysctl.led.light0
+on property:sys.sysctl.led.light0=*
+   write /sys/class/leds/torch-light0/brightness ${sys.sysctl.led.light0}
+
+#  sys.sysctl.led.light1
+on property:sys.sysctl.led.light1=*
+   write /sys/class/leds/torch-light1/brightness ${sys.sysctl.led.light1}
+
+#  sys.sysctl.antenna.export
+on property:sys.sysctl.antenna.export=*
+   write /sys/class/gpio/export ${sys.sysctl.antenna.export}
+
+#  sys.sysctl.antenna.direction
+on property:sys.sysctl.antenna.direction=*
+   write /sys/class/gpio/gpio127/direction ${sys.sysctl.antenna.direction}
+
+#  sys.sysctl.antenna.value
+on property:sys.sysctl.antenna.value=*
+   write /sys/class/gpio/gpio127/value ${sys.sysctl.antenna.value}
+
+#  sys.sysctl.charge.value
+on property:sys.sysctl.charge.value=*
+   write /sys/class/power_supply/battery/charging_enabled ${sys.sysctl.charge.value}
+

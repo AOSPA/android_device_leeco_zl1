@@ -14,6 +14,9 @@ persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
+
+#persist.sys.modem_auth_timeout=10000
+
 DEVICE_PROVISIONED=1
 # Start in global mode
 ro.telephony.default_network=22,22
@@ -260,25 +263,25 @@ ro.persist.qcapb = 1
 #[+LEUI]end
 
 #enable Apical AD
-ro.qcom.ad=1
-ro.qcom.ad.calib.data=/system/etc/ad_calib_le_zl1.cfg
-ro.qcom.ad.sensortype=3
+#ro.qcom.ad=1
+#ro.qcom.ad.calib.data=/system/etc/ad_calib_le_zl1.cfg
+#ro.qcom.ad.sensortype=3
 
 #default beta mode
-persist.sys.zeusis.beta=0
+#persist.sys.zeusis.beta=0
 
 #default experience_program mode
-persist.sys.leui.exp_program=0
+#persist.sys.leui.exp_program=0
 
 #disable pdaf Face frame
-persist.camera.stats.test=5
+#persist.camera.stats.test=5
 
 #ssr default value
 persist.sys.ssr.restart_level=ALL_ENABLE
 persist.sys.ssr.enable_ramdumps=1
 
 #default ramdump mode
-persist.sys.dload.state=1
+#persist.sys.dload.state=1
 
 #WYQ, to force call stick on CS (NOT switch to VoLTE)
 persist.radio.cs_srv_type=1
