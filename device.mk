@@ -126,7 +126,6 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8996 \
     audio.r_submix.default \
     audio.usb.default \
-    sound_trigger.primary.msm8996 \
     libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
@@ -217,8 +216,8 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    SnapdragonCamera \
-    libcamera_shim
+    Camera2 \
+    libstlport
 
 # power
 PRODUCT_PACKAGES += \
@@ -265,6 +264,12 @@ PRODUCT_PACKAGES += \
 #IR
 PRODUCT_PACKAGES += \
     consumerir.default
+
+#Radio
+PRODUCT_PACKAGES += \
+    FMRadio \
+    libqcomfm_jni \
+    qcom.fmradio
 
 #PRODUCT_PACKAGES += \
     gatekeeper.msm8996 \

@@ -811,10 +811,10 @@
         minSampleRate="8000" maxSampleRate="8000"
         minChannels="1" maxChannels="1" />
 
-    <!--<AudioEncoderCap name="lpcm" enabled="true"
+    <AudioEncoderCap name="lpcm" enabled="true"
         minBitRate="768000" maxBitRate="4608000"
         minSampleRate="8000" maxSampleRate="48000"
-        minChannels="1" maxChannels="6" />-->
+        minChannels="1" maxChannels="6" />
 
     <!--
         FIXME:
@@ -823,8 +823,8 @@
         for TEST applications. For other applications, we do
         not perform any checks at all.
     -->
-    <VideoDecoderCap name="wmv" enabled="false"/>
-    <AudioDecoderCap name="wma" enabled="false"/>
+    <VideoDecoderCap name="wmv" enabled="true"/>
+    <AudioDecoderCap name="wma" enabled="true"/>
 
     <!--
         The VideoEditor Capability configuration:

@@ -204,6 +204,7 @@ audio.offload.passthrough=false
 audio.offload.multiple.enabled=true
 #set prtsist.radio.multisim.config as dsds by tianjianheng@letv.com RUBY-395
 persist.radio.multisim.config=dsds
+persist.volte_enabled_by_hw=1
 
 # enable navigation bar
 qemu.hw.mainkeys=1
@@ -355,7 +356,7 @@ dalvik.vm.isa.arm64.variant=kryo
 dalvik.vm.isa.arm64.features=default
 dalvik.vm.isa.arm.variant=cortex-a53
 dalvik.vm.isa.arm.features=default
-net.bt.name=Android
+net.bt.name=LePro3
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
 persist.gps.qc_nlp_in_use=1
 persist.loc.nlp_name=com.qualcomm.location
@@ -367,3 +368,9 @@ persist.radio.rat_on=combine
 persist.radio.mt_sms_ack=20
 #ro.mdtp.package_name2=com.qualcomm.qti.securemsm.mdtp.MdtpDemo
 
+# HAX - remove ASAP
+#media.stagefright.legacyencoder=true
+#media.stagefright.less-secure=true
+
+# change this when HAL3 is working
+setprop persist.camera.HAL3.enabled 1

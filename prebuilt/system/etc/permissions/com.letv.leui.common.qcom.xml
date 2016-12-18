@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!-- Features for product qcom -->
-<permissions>
-    <feature name="com.letv.leui.deskclock.support_power_off_alarm_qc"/>
-    <feature name="volume.smartsound"/>
-    <feature name="letvrecorder.scene.settings"/>
-    <feature name="gallery2.color_mode"/>
-</permissions>
