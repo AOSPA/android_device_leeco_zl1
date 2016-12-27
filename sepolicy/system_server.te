@@ -11,3 +11,5 @@ allow system_server sysfs_graphics:dir search;
 
 #Allow access to lirc device
 allow system_server lirc_device:chr_file rw_file_perms;
+
+get_prop(system_server, diag_prop);

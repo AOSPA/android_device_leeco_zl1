@@ -2,3 +2,5 @@ allow netmgrd diag_prop:property_service set;
 
 
 allow netmgrd self:capability dac_override;
+
+get_prop(netmgrd, diag_prop);

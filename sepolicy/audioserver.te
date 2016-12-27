@@ -1,2 +1,4 @@
 allow audioserver persist_file:file { getattr open read };
 
+set_prop(audioserver, diag_prop);
+
