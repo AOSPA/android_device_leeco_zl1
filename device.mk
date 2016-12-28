@@ -217,6 +217,7 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     Camera2 \
+    libcamera_shim \
     libstlport
 
 # power

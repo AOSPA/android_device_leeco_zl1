@@ -43,7 +43,7 @@ on early-init
     chmod 0755 /sys/kernel/debug
 
 on init
-#    export LD_SHIM_LIBS /system/lib/hw/camera.msm8996.so|libcamera_shim.so
+    export LD_SHIM_LIBS /system/lib/hw/camera.msm8996.so|/system/lib/libcamera_shim.so
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -345,6 +345,10 @@ on boot
      # wake_gesture
     chown system system /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input3/wake_gesture
 on post-fs
+
+    # Link formware to /vendor/firmware
+    # This is needed for liboemcrypto.so to find the firmware
+    ln -s /system/etc/firmware/ /vendor/firmware
 
 # msm specific files that need to be created on /data
 on post-fs-data

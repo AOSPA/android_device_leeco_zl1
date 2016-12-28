@@ -34,7 +34,7 @@ on early-init
     mkdir /dsp 0771 media media
 
 on post-fs
-#    export LD_PRELOAD libNimsWrap.so
+    export LD_PRELOAD libNimsWrap.so
 
 on fs
     wait /dev/block/bootdevice
@@ -165,16 +165,16 @@ on boot
     chmod 0666 /sys/class/leds/lcd-backlight/max_brightness
 
 
-service qfp-boot /system/bin/sh /system/etc/qfp_boot.sh
-    class late_start
-    user root
-    group root
-    oneshot
+#service qfp-boot /system/bin/sh /system/etc/qfp_boot.sh
+#    class late_start
+#    user root
+#    group root
+#    oneshot
 
-service qfp-daemon /system/bin/qfp-daemon
-    class late_start
-    user system
-    group system drmrpc diag input
+#service qfp-daemon /system/bin/qfp-daemon
+#    class late_start
+#    user system
+#    group system drmrpc diag input
 
 on property:init.svc.per_mgr=running
     start per_proxy
