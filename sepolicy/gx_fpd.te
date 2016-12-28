@@ -73,3 +73,8 @@ allow gx_fpd app_data_file:file rw_file_perms;
 #allow gx_fpd system_data_file:file create_file_perms;
 #allow gx_fpd apk_data_file:dir create_dir_perms;
 #allow gx_fpd apk_data_file:file {create_file_perms execute}; 
+
+allow gx_fpd firmware_file:file { getattr open read };
+allow gx_fpd ion_device:chr_file { ioctl open read };
+allow gx_fpd rootfs:lnk_file getattr;
+

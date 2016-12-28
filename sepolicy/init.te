@@ -4,3 +4,9 @@ allow init sysfs:dir rw_file_perms;
 allow init sysfs:file rw_file_perms;
 allow init input_device:chr_file r_file_perms;
 domain_trans(init, rootfs, dashd)
+
+allow init debugfs:dir mounton;
+allow init debugfs:file write;
+allow init property_socket:sock_file write;
+
+

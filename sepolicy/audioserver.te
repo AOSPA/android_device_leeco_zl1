@@ -1,4 +1,5 @@
 allow audioserver persist_file:file { getattr open read };
 
 set_prop(audioserver, diag_prop);
+allow audioserver rootfs:lnk_file getattr;
 

@@ -8,3 +8,7 @@ allow qti_init_shell ctl_default_prop:property_service set;
 
 allow qti_init_shell coresight_prop:file { getattr open read };
 
+
+allow qti_init_shell device:dir { add_name write };
+allow qti_init_shell device:file { create open write };
+
