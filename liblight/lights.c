@@ -2,7 +2,6 @@
  * Copyright (C) 2008 The Android Open Source Project
  * Copyright (C) 2014 The Linux Foundation. All rights reserved.
  * Copyright (C) 2015 The CyanogenMod Project
- * Copyright (C) 2016 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +17,7 @@
  */
 
 #define LOG_TAG "lights"
+
 #include <cutils/log.h>
 
 #include <stdint.h>
@@ -33,20 +33,13 @@
 
 #include <hardware/lights.h>
 
-#include "lights.h"
-
 /******************************************************************************/
-
-struct backlight_config {
-    int cur_brightness, max_brightness;
-};
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static struct light_state_t g_attention;
 static struct light_state_t g_notification;
 static struct light_state_t g_battery;
-static struct backlight_config g_backlight; // For panel backlight
 
 char const*const RED_LED_FILE
         = "/sys/class/leds/red/brightness";
@@ -58,7 +51,7 @@ char const*const BLUE_LED_FILE
         = "/sys/class/leds/blue/brightness";
 
 char const*const LCD_FILE
-        = "/sys/class/leds/wled/brightness";
+        = "/sys/class/leds/lcd-backlight/brightness";
 
 const char*const BUTTONS_FILE
         = "/sys/class/leds/button-backlight/brightness";
@@ -117,50 +110,21 @@ char const*const GREEN_BLINK_FILE
 char const*const BLUE_BLINK_FILE
         = "/sys/class/leds/blue/blink";
 
-char const*const RGB_BLINK_FILE
-        = "/sys/class/leds/rgb/rgb_blink";
+#define ZL1_MAX_BRIGHTNESS 4095
 
 #define RAMP_SIZE 8
 static int BRIGHTNESS_RAMP[RAMP_SIZE]
         = { 0, 12, 25, 37, 50, 72, 85, 100 };
 #define RAMP_STEP_DURATION 50
 
-#define MAX_INPUT_BRIGHTNESS 255
-
 /**
  * device methods
  */
 
-static int read_int(char const *path)
+void init_globals(void)
 {
-    int fd, len;
-    int num_bytes = 10;
-    char buf[11];
-    int retval;
-
-    fd = open(path, O_RDONLY);
-    if (fd < 0) {
-        ALOGE("%s: failed to open %s\n", __func__, path);
-        goto fail;
-    }
-
-    len = read(fd, buf, num_bytes - 1);
-    if (len < 0) {
-        ALOGE("%s: failed to read from %s\n", __func__, path);
-        goto fail;
-    }
-
-    buf[len] = '\0';
-    close(fd);
-
-    // no endptr, decimal base
-    retval = strtol(buf, NULL, 10);
-    return retval == 0 ? -1 : retval;
-
-fail:
-    if (fd >= 0)
-        close(fd);
-    return -1;
+    // init the mutex
+    pthread_mutex_init(&g_lock, NULL);
 }
 
 static int
@@ -207,12 +171,6 @@ write_str(char const* path, char* value)
     }
 }
 
-void init_globals(void)
-{
-    // init the mutex
-    pthread_mutex_init(&g_lock, NULL);
-}
-
 static int
 is_lit(struct light_state_t const* state)
 {
@@ -233,27 +191,14 @@ set_light_backlight(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
-    int max_brightness = g_backlight.max_brightness;
+
+    brightness = (brightness / 255.0) * ZL1_MAX_BRIGHTNESS;
+
     if(!dev) {
         return -1;
     }
-
-    /*
-     * If our max panel brightness is > 255, apply linear scaling across the
-     * accepted range.
-     */
-    if (max_brightness > MAX_INPUT_BRIGHTNESS) {
-        int old_brightness = brightness;
-        brightness = brightness * max_brightness / MAX_INPUT_BRIGHTNESS;
-        ALOGV("%s: scaling brightness %d => %d\n", __func__,
-            old_brightness, brightness);
-    }
-
     pthread_mutex_lock(&g_lock);
     err = write_int(LCD_FILE, brightness);
-    if (err == 0)
-        g_backlight.cur_brightness = brightness;
-
     pthread_mutex_unlock(&g_lock);
     return err;
 }
@@ -325,10 +270,16 @@ set_speaker_light_locked(struct light_device_t* dev,
     red = (colorRGB >> 16) & 0xFF;
     green = (colorRGB >> 8) & 0xFF;
     blue = colorRGB & 0xFF;
+    // bias for true white
+    if (colorRGB != 0 && red == green && green == blue) {
+        blue = (blue * 171) / 256;
+    }
     blink = onMS > 0 && offMS > 0;
 
     // disable all blinking to start
-    write_int(RGB_BLINK_FILE, 0);
+    write_int(RED_BLINK_FILE, 0);
+    write_int(GREEN_BLINK_FILE, 0);
+    write_int(BLUE_BLINK_FILE, 0);
 
     if (blink) {
         stepDuration = RAMP_STEP_DURATION;
@@ -372,14 +323,11 @@ set_speaker_light_locked(struct light_device_t* dev,
         free(duty);
 
         // start the party
-        write_int(RGB_BLINK_FILE, 1);
+        write_int(RED_BLINK_FILE, red);
+        write_int(GREEN_BLINK_FILE, green);
+        write_int(BLUE_BLINK_FILE, blue);
 
     } else {
-        if (red == 0 && green == 0 && blue == 0) {
-            write_int(RED_BLINK_FILE, 0);
-            write_int(GREEN_BLINK_FILE, 0);
-            write_int(BLUE_BLINK_FILE, 0);
-        }
         write_int(RED_LED_FILE, red);
         write_int(GREEN_LED_FILE, green);
         write_int(BLUE_LED_FILE, blue);
@@ -499,14 +447,6 @@ static int open_lights(const struct hw_module_t* module, char const* name,
     else
         return -EINVAL;
 
-    int max_brightness = read_int(PANEL_MAX_BRIGHTNESS_NODE);
-    if (max_brightness < 0) {
-        ALOGE("%s: failed to read max panel brightness, fallback to 255!",
-            __func__);
-        max_brightness = 255;
-    }
-    g_backlight.max_brightness = max_brightness;
-
     pthread_once(&g_init, init_globals);
 
     struct light_device_t *dev = malloc(sizeof(struct light_device_t));
@@ -538,7 +478,7 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_major = 1,
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
-    .name = "ZL1 Lights Module",
-    .author = "The OmniRom Project",
+    .name = "Lights Module",
+    .author = "The CyanogenMod Project",
     .methods = &lights_module_methods,
 };
