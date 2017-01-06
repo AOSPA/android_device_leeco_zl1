@@ -17,7 +17,7 @@
 	<PreferenceCategory
 	    android:key="gesture_category"
 	    android:title="@string/category_gestures_title" >
-
+<!--
 		<CheckBoxPreference
 			android:key="camera"
 			android:summary="@string/camera_summary_head"
@@ -32,7 +32,7 @@
 			android:key="music"
 			android:summary="@string/music_summary_head"
 			android:title="@string/music_title_head" />
-
+-->
         <CheckBoxPreference
             android:key="proxi"
             android:summary="@string/proxi_summary_head"
@@ -48,7 +48,7 @@
 	        android:title="@string/vib_strength_title_head"
 	        android:summary="@string/vib_strength_summary_head" />
 	</PreferenceCategory>
-
+<!--
 	<PreferenceCategory
         android:title="@string/category_slider">
         <ListPreference
@@ -58,7 +58,7 @@
             android:entryValues="@array/slider_mode_values"
             android:persistent="false" />
 	</PreferenceCategory>
-
+-->
 	<!--<PreferenceCategory
         android:title="@string/buttons_title">
 		<CheckBoxPreference
@@ -67,7 +67,7 @@
 			android:title="@string/swap_back_recents_title"
 			android:persistent="false" />
 	</PreferenceCategory>-->
-
+<!--
 	<PreferenceCategory
         android:title="@string/graphics_title">
 		<CheckBoxPreference
@@ -79,4 +79,5 @@
 			android:summary="@string/hbm_mode_summary"
 			android:title="@string/hbm_mode_title" />
 	</PreferenceCategory>
+-->
 </PreferenceScreen>
