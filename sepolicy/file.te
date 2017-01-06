@@ -1,7 +1,7 @@
 type proc_touchpanel, fs_type;
 type nv_data_file, file_type;
 type sysfs_vibrator, fs_type, sysfs_type;
-
+type proc_stat, fs_type;
 
 # daizhiling add for goodix_fingerprint begin
 # Type for Goodix fingerprint template file.

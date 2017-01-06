@@ -1,0 +1,1 @@
+allow bluetooth_loader self:capability { net_admin dac_override };
