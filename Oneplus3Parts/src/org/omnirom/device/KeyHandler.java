@@ -57,7 +57,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final boolean DEBUG = true;
     protected static final int GESTURE_REQUEST = 1;
     private static final int GESTURE_WAKELOCK_DURATION = 2000;
-    private static final String KEY_CONTROL_PATH = "/proc/s1302/virtual_key";
+    private static final String KEY_CONTROL_PATH = "/proc/touchpanel/capacitive_keys_enable";
     private static final String FPC_CONTROL_PATH = "/sys/devices/soc/soc:fpc_fpc1020/proximity_state";
 
     // Supported scancodes
@@ -265,38 +265,11 @@ public class KeyHandler implements DeviceKeyHandler {
                 dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_NEXT);
             }
             break;
-        case KEY_MODE_TOTAL_SILENCE:
-            if (DEBUG) Log.i(TAG, "KEY_MODE_TOTAL_SILENCE");
-            mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
-            if (getSliderMode() == 0) {
-                mNoMan.setZenMode(Global.ZEN_MODE_NO_INTERRUPTIONS, null, TAG);
-            } else {
-                mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_SILENT);
-            }
-            break;
         /*case KEY_MODE_ALARMS_ONLY:
             if (DEBUG) Log.i(TAG, "KEY_MODE_ALARMS_ONLY " + Global.ZEN_MODE_ALARMS);
             mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
             mNoMan.setZenMode(Global.ZEN_MODE_ALARMS, null, TAG);
             break;*/
-        case KEY_MODE_PRIORITY_ONLY:
-            if (DEBUG) Log.i(TAG, "KEY_MODE_PRIORITY_ONLY");
-            mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
-            if (getSliderMode() == 0) {
-                mNoMan.setZenMode(Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS, null, TAG);
-            } else {
-                mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_VIBRATE);
-            }
-            break;
-        case KEY_MODE_NONE:
-            if (DEBUG) Log.i(TAG, "KEY_MODE_NONE");
-            mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
-            if (getSliderMode() == 0) {
-                mNoMan.setZenMode(Global.ZEN_MODE_OFF, null, TAG);
-            } else {
-                mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
-            }
-            break;
         }
     }
 
@@ -343,9 +316,9 @@ public class KeyHandler implements DeviceKeyHandler {
                 context.getContentResolver(), Settings.System.HARDWARE_KEYS_DISABLE, 0) == 1;
         if (DEBUG) Log.i(TAG, "setButtonDisable=" + mButtonDisabled);
         if(mButtonDisabled)
-            Utils.writeValue(KEY_CONTROL_PATH, "1");
-        else
             Utils.writeValue(KEY_CONTROL_PATH, "0");
+        else
+            Utils.writeValue(KEY_CONTROL_PATH, "1");
     }
 
     @Override
@@ -397,17 +370,17 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
-    private int getSliderMode() {
+/*    private int getSliderMode() {
         return Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.BUTTON_EXTRA_KEY_MAPPING, 0);
     }
 
-    /*private boolean swapBackAndRecents() {
+    private boolean swapBackAndRecents() {
         return Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.BUTTON_SWAP_BACK_RECENTS, 0) != 0;
-    }*/
+    }
 
-    /*@Override
+    @Override
     public KeyEvent translateKeyEvent(KeyEvent event) {
         // KeyEvent(long downTime, long eventTime, int action, int code, int repeat, int metaState, int deviceId, int scancode, int flags, int source)
         if (event.getScanCode() == KEY_BACK) {
@@ -427,8 +400,8 @@ public class KeyHandler implements DeviceKeyHandler {
             }
         }
         return null;
-    }*/
-
+    }
+*/
     private String getRearCameraId() {
         if (mRearCameraId == null) {
             try {

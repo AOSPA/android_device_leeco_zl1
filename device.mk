@@ -165,7 +165,7 @@ PRODUCT_COPY_FILES += \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
+    $(LOCAL_PATH)/keylayout/synaptics_dsx_v26.kl:system/usr/keylayout/synaptics_dsx_v26.kl \
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -203,6 +203,7 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
+    libOmxVdecHevc \
     libstagefrighthw
 
 # RIL
@@ -225,7 +226,6 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     Camera2 \
-    libcamera_shim \
     libstlport
 
 # power
@@ -277,16 +277,17 @@ PRODUCT_PACKAGES += \
 #Radio
 PRODUCT_PACKAGES += \
     FMRadio \
-    libqcomfm_jni \
-    qcom.fmradio
+    libfmjni \
+    libqcomfm_jni.so
 
 #PRODUCT_PACKAGES += \
     gatekeeper.msm8996 \
     keystore.msm8996
 
-# QMI
+# QCom
 PRODUCT_PACKAGES += \
-    libjson
+    libjson \
+    tcmiface
 
 #qdcm
 PRODUCT_PACKAGES += \

@@ -43,7 +43,7 @@ on early-init
     chmod 0755 /sys/kernel/debug
 
 on init
-#    export LD_SHIM_LIBS /system/lib/hw/camera.msm8996.so|/system/lib/libcamera_shim.so
+#    export LD_SHIM_LIBS /system/lib/hw/camera.msm8996.so|libcamera_shim.so
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -82,11 +82,11 @@ on early-boot
 
 on boot
     # Secure touch
-    chmod 0660 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
-    chmod 0440 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
-    chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
-    chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
-    write /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input0/update_fw 1
+    #chmod 0660 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
+    #chmod 0440 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
+    #chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
+    #chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
+    #write /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input0/update_fw 1
 
     # Torch
     chown system system /sys/class/leds/led:torch_0/brightness
@@ -100,30 +100,9 @@ on boot
     chown system radio /proc/touchpanel/double_tap_enable
     chmod 0660 /proc/touchpanel/double_tap_enable
 
-    chown root system /proc/touchpanel/camera_enable
-    chmod 0660 /proc/touchpanel/camera_enable
-
-    chown root system /proc/touchpanel/music_enable
-    chmod 0660 /proc/touchpanel/music_enable
-
-    chown root system /proc/touchpanel/flashlight_enable
-    chmod 0660 /proc/touchpanel/flashlight_enable
-
     # Buttons
-    chown root system /proc/s1302/key_rep
-    chmod 0660 /proc/s1302/key_rep
-
-    chown root system /proc/s1302/virtual_key
-    chmod 0660 /proc/s1302/virtual_key
-
-    chown root system /proc/tri-state-key/keyCode_top
-    chmod 0660 /proc/tri-state-key/keyCode_top
-
-    chown root system /proc/tri-state-key/keyCode_middle
-    chmod 0660 /proc/tri-state-key/keyCode_middle
-
-    chown root system /proc/tri-state-key/keyCode_bottom
-    chmod 0660 /proc/tri-state-key/keyCode_bottom
+    chown root system /proc/touchpanel/capacitive_keys_enable
+    chmod 0660 /proc/touchpanel/capacitive_keys_enable
 
     # Graphics
     chown system graphics /sys/class/graphics/fb0/dyn_pu
@@ -138,21 +117,6 @@ on boot
     chmod 0664 /sys/class/graphics/fb0/hbm
     chown system graphics /sys/class/graphics/fb0/srgb
     chmod 0664 /sys/class/graphics/fb0/srgb
-
-    # Fingerprint
-    chmod 0664 /sys/devices/soc/soc:fpc_fpc1020/irq
-    chown system system /sys/devices/soc/soc:fpc_fpc1020/irq
-    chmod 0660 /sys/devices/soc/soc:fpc_fpc1020/report_home
-    chown system system /sys/devices/soc/soc:fpc_fpc1020/report_home
-    chmod 0660 /sys/devices/soc/soc:fpc_fpc1020/update_info
-    chown system system /sys/devices/soc/soc:fpc_fpc1020/update_info
-    chmod 0660 /sys/devices/soc/soc:fpc_fpc1020/screen_state
-    chown system system /sys/devices/soc/soc:fpc_fpc1020/screen_state
-    chmod 0660 /sys/devices/soc/soc:fpc_fpc1020/hw_reset
-    chown system system /sys/devices/soc/soc:fpc_fpc1020/hw_reset
-    chmod 0660 /sys/devices/soc/soc:fpc_fpc1020/proximity_state
-    chown system system /sys/devices/soc/soc:fpc_fpc1020/proximity_state
-    chmod 0666 /dev/qseecom
 
     # NFC
     chmod 0666 /dev/pn544
@@ -344,6 +308,11 @@ on boot
     
      # wake_gesture
     chown system system /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input3/wake_gesture
+
+    # FM
+    chmod 0644 /dev/radio0
+    chown fm_radio fm_radio /dev/radio0
+
 on post-fs
 
     # Link formware to /vendor/firmware
@@ -400,6 +369,10 @@ on post-fs-data
 
     # Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
+
+    # Create FM dir for patchdownloader
+    mkdir /data/misc/fm 0770 system system
+    chmod 0770 /data/misc/fm
 
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -489,6 +462,13 @@ on post-fs-data
     # Create a folder for audio delta files
     mkdir /data/audio/acdbdata 0770 media audio
     mkdir /data/audio/acdbdata/delta 0770 media audio
+
+    chown system system /sys/class/timed_output/vibrator/vtg_level
+    chown system system /sys/class/timed_output/vibrator/vtg_max
+    chown system system /sys/class/timed_output/vibrator/vtg_min
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_level
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_max
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_min
 
     setprop vold.post_fs_data_done 1
 
@@ -1083,7 +1063,7 @@ on property:netd.fstman.start=false
 #
 #on property:wifi.fccutild.load.qcacld=true
 #    insmod /system/lib/modules/qca_cld/qca_cld_wlan.ko con_mode=5
-#
+
 service cnss_diag /system/bin/cnss_diag -q -f
     class main
     user root
@@ -1107,9 +1087,9 @@ service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     disabled
     oneshot
 
-on property:crypto.driver.load=1
-     insmod /system/lib/modules/qce.ko
-     insmod /system/lib/modules/qcedev.ko
+#on property:crypto.driver.load=1
+#     insmod /system/lib/modules/qce.ko
+#     insmod /system/lib/modules/qcedev.ko
 
 #service drmdiag /system/bin/drmdiagapp
 #    class late_start
@@ -1344,7 +1324,7 @@ on property:ro.boot.fpsensor=gdx
 
 service wifi_mac /system/bin/logwrapper /system/bin/set_wifi_mac
     class core
-    user root
+    seclabel u:r:wifi_mac:s0
     oneshot
 
 # add by letv for reduced power rate when normal charge be selected begin

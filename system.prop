@@ -349,7 +349,6 @@ persist.radio.custom_ecc=1
 af.fast_track_multiplier=1
 audio_hal.period_size=192
 camera.disable_zsl_mode=1
-ro.mtk_default_ime=com.baidu.input_letv.ImeService
 persist.sys.sf.lcd_density=420
 persist.sys.dalvik.vm.lib.2=libart
 dalvik.vm.isa.arm64.variant=kryo
@@ -368,9 +367,7 @@ persist.radio.rat_on=combine
 persist.radio.mt_sms_ack=20
 #ro.mdtp.package_name2=com.qualcomm.qti.securemsm.mdtp.MdtpDemo
 
-# HAX - remove ASAP
-#media.stagefright.legacyencoder=true
-#media.stagefright.less-secure=true
-
-# change this when HAL3 is working
-setprop persist.camera.HAL3.enabled 1
+persist.camera.HAL3.enabled=0
+camera2.portability.force_api=1
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true

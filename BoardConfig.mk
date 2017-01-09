@@ -49,7 +49,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 ENABLE_CPUSETS := true
 
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x02000000
@@ -131,6 +131,7 @@ BOARD_DISABLE_FMRADIO_LIBJNI = true
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 USE_DEVICE_SPECIFIC_CAMERA := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 #General
 TARGET_COMPILE_WITH_MSM_KERNEL := true
@@ -158,8 +159,8 @@ BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_DRIVER_FW_PATH_AP           := "ap"
 WIFI_DRIVER_FW_PATH_P2P          := "p2p"
-WIFI_DRIVER_MODULE_NAME := "wlan"
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+#WIFI_DRIVER_MODULE_NAME := "wlan"
+#WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 
 # charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -212,6 +213,10 @@ BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp
 
 WITH_DEXPREOPT := false
 
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
 # Recovery:Start
 TARGET_RECOVERY_FSTAB := $(BOARD_PATH)/configs/fstab.qcom
 TW_THEME := portrait_hdpi
@@ -221,3 +226,5 @@ TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_DEFAULT_LANGUAGE := en-US
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_CRYPTO := true
+
+TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"

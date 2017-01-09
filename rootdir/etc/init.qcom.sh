@@ -322,3 +322,4 @@ cp -r /system/etc/firmware/mbn_ota/* /data/misc/radio/modem_config
 #endif /*VENDOR_EDIT*/
 chown -hR radio.radio /data/misc/radio/modem_config
 echo 1 > /data/misc/radio/copy_complete
+chown -LR system.system /proc/touchpanel

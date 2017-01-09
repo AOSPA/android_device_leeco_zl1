@@ -38,6 +38,10 @@ $(call inherit-product, vendor/omni/config/common.mk)
 # Inherit from hardware-specific part of the product configuration
 $(call inherit-product, device/leeco/le_zl1/device.mk)
 
+# SELinux
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.selinux=1
+
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := omni_le_zl1
 PRODUCT_DEVICE := le_zl1

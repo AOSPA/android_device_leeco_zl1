@@ -4,3 +4,5 @@ type lirc_device, dev_type;
 #For Goodix fingerprint
 type gx_fpd_device, dev_type;
 # daizhiling add for goodix_fingerprint end
+
+type persist_block_device, dev_type;
