@@ -213,3 +213,6 @@ drm.service.enabled=true
 
 # FlexMap
 persist.radio.flexmap_type=disabled
+
+# sdcardFS
+ro.sys.sdcardfs=true
