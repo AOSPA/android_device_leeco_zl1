@@ -100,10 +100,6 @@ on boot
     chown system radio /proc/touchpanel/double_tap_enable
     chmod 0660 /proc/touchpanel/double_tap_enable
 
-    # Buttons
-    chown root system /proc/touchpanel/capacitive_keys_enable
-    chmod 0660 /proc/touchpanel/capacitive_keys_enable
-
     # Graphics
     chown system graphics /sys/class/graphics/fb0/dyn_pu
     chmod 0664 /sys/class/graphics/fb0/dyn_pu
@@ -309,6 +305,10 @@ on boot
      # wake_gesture
     chown system system /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input3/wake_gesture
 
+    # Buttons
+    chown root system /proc/touchpanel/capacitive_keys_enable
+    chmod 0660 /proc/touchpanel/capacitive_keys_enable
+
     # FM
     chmod 0644 /dev/radio0
     chown fm_radio fm_radio /dev/radio0
@@ -340,6 +340,14 @@ on post-fs-data
     mkdir /data/misc/tloc/ 0700 system drmrpc
     mkdir /data/misc/qvop 0660 system system
     mkdir /data/misc/audio_pp 0771 media audio
+
+    # Create directory used by audio subsystem
+    mkdir /data/misc/audio 0770 audio audio
+    mkdir /data/audio/ 0770 media audio
+
+    # Create directory for audio delta files
+    mkdir /data/misc/audio/acdbdata 0770 media audio
+    mkdir /data/misc/audio/acdbdata/delta 0770 media audio
 
     # NFC
     mkdir /data/nfc
@@ -403,13 +411,6 @@ on post-fs-data
     mkdir /data/dpm/nsrm 0771 system system
     chown system system /data/dpm/nsrm
 
-    # Create directory used by audio subsystem
-    mkdir /data/misc/audio 0770 audio audio
-
-    # Create directory for audio delta files
-    mkdir /data/misc/audio/acdbdata 0770 media audio
-    mkdir /data/misc/audio/acdbdata/delta 0770 media audio
-
     # Create directory used by the DASH client
     mkdir /data/misc/dash 0770 media audio
 
@@ -456,12 +457,6 @@ on post-fs-data
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
-
-    mkdir /data/audio/ 0770 media audio
-
-    # Create a folder for audio delta files
-    mkdir /data/audio/acdbdata 0770 media audio
-    mkdir /data/audio/acdbdata/delta 0770 media audio
 
     chown system system /sys/class/timed_output/vibrator/vtg_level
     chown system system /sys/class/timed_output/vibrator/vtg_max

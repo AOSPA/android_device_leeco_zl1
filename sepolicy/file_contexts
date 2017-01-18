@@ -58,3 +58,6 @@
 
 # Vibrator config
 /sys/devices/virtual/timed_output/vibrator(/.*)?	u:object_r:sysfs_vibrator:s0
+
+
+/dev/i2c-*                    u:object_r:smartpa_device:s0
