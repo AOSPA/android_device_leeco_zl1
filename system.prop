@@ -203,7 +203,7 @@ audio.dolby.ds2.hardbypass=false
 audio.offload.passthrough=false
 audio.offload.multiple.enabled=true
 #set prtsist.radio.multisim.config as dsds by tianjianheng@letv.com RUBY-395
-persist.radio.multisim.config=dsds
+#persist.radio.multisim.config=dsds
 persist.volte_enabled_by_hw=1
 
 # enable navigation bar
