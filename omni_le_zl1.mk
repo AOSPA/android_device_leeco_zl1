@@ -42,6 +42,8 @@ $(call inherit-product, device/leeco/le_zl1/device.mk)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
+PRODUCT_BOOT_JARS += qcom.fmradio
+
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := omni_le_zl1
 PRODUCT_DEVICE := le_zl1
