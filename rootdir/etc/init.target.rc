@@ -84,7 +84,7 @@ on property:init.svc.bootanim=running
 
 on boot
     start rmt_storage
-    start rfs_access
+    #start rfs_access
     
 # access permission for secure touch
     chmod 0660 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
