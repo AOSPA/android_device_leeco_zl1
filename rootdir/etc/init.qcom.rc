@@ -35,13 +35,6 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
 
-    mkdir /firmware 0771 system system
-    mkdir /bt_firmware 0771 system system
-    symlink /data/tombstones /tombstones
-    mkdir /dsp 0771 media media
-    mount debugfs debugfs /sys/kernel/debug
-    chmod 0755 /sys/kernel/debug
-
 on init
 #    export LD_SHIM_LIBS /system/lib/hw/camera.msm8996.so|libcamera_shim.so
 
@@ -54,24 +47,11 @@ on init
 
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
-    # to create a link for /data/fastplay
-    symlink /data/fastplay /video
-
-    # change for usb typec headset prop
-    chown media media /sys/module/snd_soc_msm8996/parameters/usb_typec_swap
-    chown media media /sys/module/snd_soc_wcd_mbhc_zl1/parameters/headset_swap_backmic
-    chown media media /sys/devices/virtual/typec/typec_device/supported_dev
-    chown media media /sys/module/cyccg/parameters/typec_headset_with_analog
-
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-
     # set aggressive read ahead during boot up.
     write /sys/block/dm-0/queue/read_ahead_kb 2048
-    write /sys/block/sda/queue/read_ahead_kb 2048
-    write /sys/block/sde/queue/read_ahead_kb 2048
-
     # Allow subsystem (modem etc) debugging
     write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
     write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
@@ -79,47 +59,9 @@ on early-boot
     write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
+    exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
 on boot
-    # Secure touch
-    #chmod 0660 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
-    #chmod 0440 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
-    #chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
-    #chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
-    #write /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input0/update_fw 1
-
-    # Torch
-    chown system system /sys/class/leds/led:torch_0/brightness
-    chmod 666 /sys/class/leds/led:torch_0/brightness
-    chown system system /sys/class/leds/led:torch_1/brightness
-    chmod 666 /sys/class/leds/led:torch_1/brightness
-    chown system system /sys/class/leds/led:switch/brightness
-    chmod 666 /sys/class/leds/led:switch/brightness
-
-    # Touchscreen
-    chown system radio /proc/touchpanel/double_tap_enable
-    chmod 0660 /proc/touchpanel/double_tap_enable
-
-    # Graphics
-    chown system graphics /sys/class/graphics/fb0/dyn_pu
-    chmod 0664 /sys/class/graphics/fb0/dyn_pu
-    chown system graphics /sys/class/graphics/fb0/idle_time
-    chmod 0664 /sys/class/graphics/fb0/idle_time
-    chown system graphics /sys/class/graphics/fb0/mode
-    chmod 0664 /sys/class/graphics/fb0/mode
-    chown system graphics /sys/class/graphics/fb0/modes
-    chmod 0664 /sys/class/graphics/fb0/modes
-    chown system graphics /sys/class/graphics/fb0/hbm
-    chmod 0664 /sys/class/graphics/fb0/hbm
-    chown system graphics /sys/class/graphics/fb0/srgb
-    chmod 0664 /sys/class/graphics/fb0/srgb
-
-    # NFC
-    chmod 0666 /dev/pn544
-    chown nfc nfc /dev/pn544
-    chmod 0666 /dev/p61
-    chown spi spi /dev/p61
-
     # RGB light
     chown system system /sys/class/leds/red/pause_lo
     chown system system /sys/class/leds/blue/pause_lo
@@ -289,19 +231,6 @@ on boot
     # bond0 used by FST Manager
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
-    # change this when HAL3 is working
-    setprop persist.camera.HAL3.enabled 0
-
-    # for fingerprint calibration
-    chown system system /persist/qc_senseid/bg_estimation/bg_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small1_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small1_off_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small2_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small2_off_basis.dat
-
-    chown system system /dev/ttyHSL1
-    chmod 0666 /dev/ttyHSL1
-    
      # wake_gesture
     chown system system /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input3/wake_gesture
 
@@ -321,56 +250,14 @@ on post-fs
 
 # msm specific files that need to be created on /data
 on post-fs-data
-
-    # Create a directory for Battery Daemon logs
-    mkdir /data/battd 0755 log log
-
-    mkdir /data/tombstones 0771 system system
-    mkdir /tombstones/modem 0771 system system
-    mkdir /tombstones/lpass 0771 system system
-    mkdir /tombstones/wcnss 0771 system system
-    mkdir /tombstones/dsps 0771 system system
-    mkdir /persist/data/sfs 0700 system system
-    mkdir /persist/data/tz 0700 system system
-    mkdir /persist/qc_senseid 0700 system system
-    mkdir /persist/bms 0700 root system
-    restorecon_recursive /persist
-    mkdir /data/misc/dts 0770 media audio
-    mkdir /data/usf 0700 system system
-    mkdir /data/misc/tloc/ 0700 system drmrpc
-    mkdir /data/misc/qvop 0660 system system
-    mkdir /data/misc/audio_pp 0771 media audio
-
-    # Create directory used by audio subsystem
-    mkdir /data/misc/audio 0770 audio audio
-    mkdir /data/audio/ 0770 media audio
-
-    # Create directory for audio delta files
-    mkdir /data/misc/audio/acdbdata 0770 media audio
-    mkdir /data/misc/audio/acdbdata/delta 0770 media audio
-
-    # NFC
-    mkdir /data/nfc
-    mkdir /data/oemnvitems 0771 radio radio
-
-    # Sensors
-    mkdir /data/misc/sensors
-    chmod 0775 /data/misc/sensors
-    chmod 0755 /persist/sensors
-    chmod 0644 /persist/sensors/sensors_settings
-    chmod 0644 /persist/sensors/gyro_sensitity_cal
-    chown system root /persist/sensors/sensors_settings
-    chown system root /persist/sensors/gyro_sensitity_cal
-
-    # Create directories for Fingerprint
-    mkdir /data/fpc_images 0770 system system
-    mkdir /data/fpc_images/verify 0770 system system
-    mkdir /data/fpc_images/enroll 0770 system system
-    mkdir /data/fpc 0770 system system
+   #Create directories for Fingerprint
     mkdir /data/misc/stargate 0770 system system
     mkdir /data/misc/stargate/bg_estimation 0770 system system
     mkdir /data/misc/stargate/calib_test 0770 system system
     mkdir /data/misc/stargate/database 0770 system system
+
+    # Create a directory for Battery Daemon logs
+    mkdir /data/battd 0755 log log
 
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
@@ -410,6 +297,14 @@ on post-fs-data
 
     mkdir /data/dpm/nsrm 0771 system system
     chown system system /data/dpm/nsrm
+
+
+    # Create directory used by audio subsystem
+    mkdir /data/misc/audio 0770 audio audio
+
+    # Create directory for audio delta files
+    mkdir /data/misc/audio/acdbdata 0770 media audio
+    mkdir /data/misc/audio/acdbdata/delta 0770 media audio
 
     # Create directory used by the DASH client
     mkdir /data/misc/dash 0770 media audio
@@ -457,6 +352,23 @@ on post-fs-data
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
+
+    mkdir /data/audio/ 0770 media audio
+
+
+    # Create a folder for audio delta files
+    mkdir /data/audio/acdbdata 0770 media audio
+    mkdir /data/audio/acdbdata/delta 0770 media audio
+
+    setprop vold.post_fs_data_done 1
+
+    #Create a folder for SRS to be able to create a usercfg file
+    mkdir /data/data/media 0770 media media
+
+    #Create FM dir for patchdownloader
+    mkdir /data/misc/fm 0770 system system
+    chmod 0770 /data/misc/fm
+
 
     chown system system /sys/class/timed_output/vibrator/vtg_level
     chown system system /sys/class/timed_output/vibrator/vtg_max
