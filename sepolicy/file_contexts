@@ -26,28 +26,6 @@
 /dev/goodix_fp*     u:object_r:gx_fpd_device:s0
 # daizhiling add for goodix_fingerprint end
 
-###################################
-/system/bin/ptt_socket_app                      u:object_r:wcnss_service_exec:s0
-/system/bin/athdiag                             u:object_r:wcnss_service_exec:s0
-/system/bin/cld-fwlog-netlink                   u:object_r:wcnss_service_exec:s0
-/system/bin/cld-fwlog-record                    u:object_r:wcnss_service_exec:s0
-/system/bin/cld-fwlog-parser                    u:object_r:wcnss_service_exec:s0
-/system/bin/cnss_diag                           u:object_r:wcnss_service_exec:s0
-/system/bin/iwpriv                              u:object_r:wcnss_service_exec:s0
-/system/bin/iwconfig                            u:object_r:wcnss_service_exec:s0
-/system/bin/iw                                  u:object_r:wcnss_service_exec:s0
-/system/bin/iwlist                              u:object_r:wcnss_service_exec:s0
-/system/bin/iwss_test                           u:object_r:wcnss_service_exec:s0
-/system/bin/pktlogconf                          u:object_r:wcnss_service_exec:s0
-/system/bin/iperf                               u:object_r:wcnss_service_exec:s0
-/system/bin/mboxping                            u:object_r:wcnss_service_exec:s0
-/system/bin/sigma_dut                           u:object_r:wcnss_service_exec:s0
-/system/bin/pktlog                              u:object_r:wcnss_service_exec:s0
-/system/bin/hal_proxy_daemon                    u:object_r:wcnss_service_exec:s0
-/system/bin/Wifilogger_app                      u:object_r:wcnss_service_exec:s0
-/system/bin/hs20-osu-client                     u:object_r:wcnss_service_exec:s0
-/system/bin/ndc                                 u:object_r:wcnss_service_exec:s0
-
 /sys/devices/soc/qpnp-smbcharger-[0-9a-f]+/power_supply/battery/capacity u:object_r:sysfs_batteryinfo:s0
 /sys/devices/soc/qpnp-smbcharger-[0-9a-f]+/power_supply/battery/current_now u:object_r:sysfs_batteryinfo:s0
 /sys/devices/soc/qpnp-smbcharger-[0-9a-f]+/power_supply/battery/voltage_now u:object_r:sysfs_batteryinfo:s0
@@ -60,6 +38,8 @@
 /sys/devices/virtual/timed_output/vibrator(/.*)?	u:object_r:sysfs_vibrator:s0
 
 
-/dev/smartpa_f0_detect                    u:object_r:smartpa_device:s0
+/dev/smartpa_f0_detect u:object_r:smartpa_f0_detect_device:s0
 /dev/i2c-6                                      u:object_r:audio_device:s0
 
+/sys/kernel/debug/msm_core(/.*)?                                u:object_r:debugfs_msm_core:s0
+/sys/kernel/debug/rmt_storage/rmts                              u:object_r:debugfs_rmts:s0

@@ -7,5 +7,5 @@ type gx_fpd_device, dev_type;
 
 type persist_block_device, dev_type;
 
-type smartpa_device, dev_type;
 type consumer_ir_device, dev_type;
+type smartpa_f0_detect_device, dev_type;
