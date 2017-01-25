@@ -17,3 +17,5 @@ get_prop(system_server, diag_prop);
 # Persistent properties
 allow system_server persist_property_file:dir rw_dir_perms;
 allow system_server persist_property_file:file { create_file_perms unlink };
+
+allow system_server shell_prop:property_service set;

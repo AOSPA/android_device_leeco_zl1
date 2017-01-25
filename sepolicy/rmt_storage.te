@@ -1,0 +1,5 @@
+allow rmt_storage debugfs_rmts:file write;
+
+allow rmt_storage debugfs_rmts:file open;
+
+
