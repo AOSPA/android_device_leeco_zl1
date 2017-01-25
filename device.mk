@@ -278,7 +278,8 @@ PRODUCT_PACKAGES += \
 #Radio
 PRODUCT_PACKAGES += \
     FMRadio \
-    libfmjni \
+    qcom.fmradio \
+    qcom.fmradio.xml \
     libqcomfm_jni.so
 
 #PRODUCT_PACKAGES += \
