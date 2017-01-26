@@ -40,11 +40,16 @@
     <bit_width_configs>
         <device name="SND_DEVICE_OUT_SPEAKER" bit_width="24"/>
     </bit_width_configs>
+    <native_configs>
+        <feature name="NATIVE_AUDIO_44.1" codec_support="1"/>
+    </native_configs>
 
     <backend_names>
-        <device name="SND_DEVICE_OUT_SPEAKER" backend="smartpa"/>
-        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="smartpa"/>
-        <device name="SND_DEVICE_OUT_VOICE_HANDSET" backend="smartpa"/>
+        <device name="SND_DEVICE_OUT_SPEAKER" backend="smartpa" />
+        <device name="SND_DEVICE_OUT_HANDSET" backend="smartpa" />
+        <device name="SND_DEVICE_OUT_VOICE_HANDSET" backend="smartpa" />
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="smartpa" />
+        <device name="SND_DEVICE_OUT_VOLTE_NB_SPEAKER" backend="smartpa" />
     </backend_names>
 
     <config_params>
@@ -52,7 +57,7 @@
         <param key="spkr_2_tz_name" value="wsatz.12"/>
         <!-- In the below value string, first parameter indicates size -->
         <!-- followed by perf lock options                             -->
-        <param key="perf_lock_opts" value="2, 0x101, 0x20F"/>
+        <param key="perf_lock_opts" value="4, 0x101, 0x704, 0x20F, 0x1E01"/>
     </config_params>
 </audio_platform_info>
 
