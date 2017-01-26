@@ -34,8 +34,91 @@ on boot
 service gx_fpd /system/bin/gx_fpd
     class late_start
     user system
-    group input
+    group system
     writepid /dev/cpuset/system-background/tasks
+
+on property:init.svc.qmuxd=running
+    start wifi_mac
+
+service letv_diag /system/bin/letv_diag
+    class main
+    user root
+    group root
+
+#service wifi_mac /system/bin/logwrapper /system/bin/set_wifi_mac
+service wifi_mac /system/bin/set_wifi_mac
+    class core
+    user root
+    oneshot
+    disabled
+
+echo " br start "
+service backuprestore /system/bin/br_app_data_service
+    class main
+    socket backuprestore stream 0660 root sdcard_rw
+    user root
+
+# factory test running
+on property:sys.factory.zeusis.test=running
+   chown system system /sys/class/power_supply/battery/charging_enabled
+   chown system system /sys/devices/soc/soc:qcom,mdss_dsi@0/994000.qcom,mdss_dsi_ctrl0/panelmode
+   chown system system /sys/class/leds/torch-light0/brightness
+   chown system system /sys/class/leds/torch-light1/brightness
+   chown system system /sys/class/dev_dct/dev_flag/rt_dev_flag
+   chown system system /sys/class/dev_dct/rt_devcheck_flag/rt_devcheck_flag
+   chown system system /dev/dsm_ctrl_dev
+   setenforce 0
+
+# factory test stoped
+on property:sys.factory.zeusis.test=stoped
+   chown root root /sys/class/power_supply/battery/charging_enabled
+   chown root root /sys/devices/soc/soc:qcom,mdss_dsi@0/994000.qcom,mdss_dsi_ctrl0/panelmode
+   chown root root /sys/class/leds/torch-light0/brightness
+   chown root root /sys/class/leds/torch-light1/brightness
+   chown root root /sys/class/dev_dct/dev_flag/rt_dev_flag
+   chown root root /sys/class/dev_dct/rt_devcheck_flag/rt_devcheck_flag
+   chown root root /dev/dsm_ctrl_dev
+   setenforce 1
+
+#  aerial device node own running
+on property:sys.zeusis.aerial.prepare=running
+   chown system system /sys/class/gpio/export
+   setenforce 0
+
+#  aerial device node own stopped
+on property:sys.zeusis.aerial.prepare=stoped
+   chown root root /sys/class/gpio/export
+   setenforce 1
+
+# aerial device node own running
+on property:sys.zeusis.aerial.start=running
+   chown system system /sys/class/gpio/gpio127/direction
+   setenforce 0
+
+# aerial device node own stopped
+on property:sys.zeusis.aerial.start=stoped
+   chown root root /sys/class/gpio/gpio127/direction
+   setenforce 1
+
+# aerial device node own running
+on property:sys.zeusis.aerial.switch=running
+   chown system system /sys/class/gpio/gpio127/value
+   setenforce 0
+
+# aerial device node own stopped
+on property:sys.zeusis.aerial.switch=stoped
+   chown root root /sys/class/gpio/gpio127/value
+   setenforce 1
+
+    class late_start
+    disabled
+
+on property:sys.factory.zeusis.wifi.test=running
+    insmod /system/lib/modules/qca_cld/qca_cld_wlan.ko con_mode=5
+
+on property:factory.zeusis.wifi.test=stopped
+    rmmod wlan
+
 
 on property:sys.boot_completed=1 && property:persist.sys.tcpdump=1 && property:persist.sys.zeusis.beta=1
     mkdir /sdcard/tcpdump 0771 root sdcard_rw
@@ -91,3 +174,13 @@ on property:sys.sysctl.antenna.value=*
 on property:sys.sysctl.charge.value=*
    write /sys/class/power_supply/battery/charging_enabled ${sys.sysctl.charge.value}
 
+#Start the Battery Daemon in COM
+#service battd /system/bin/battd
+#    class late_start
+#    user log
+#    group log
+#    oneshot
+#    disabled
+
+#on property:sys.boot_completed=1
+#    start battd

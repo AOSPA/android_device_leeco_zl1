@@ -66,12 +66,8 @@ on init
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-
     # set aggressive read ahead during boot up.
     write /sys/block/dm-0/queue/read_ahead_kb 2048
-    write /sys/block/sda/queue/read_ahead_kb 2048
-    write /sys/block/sde/queue/read_ahead_kb 2048
-
     # Allow subsystem (modem etc) debugging
     write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
     write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
@@ -79,6 +75,7 @@ on early-boot
     write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
+    exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
 on boot
     # Secure touch
@@ -460,6 +457,12 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
+    mkdir /data/audio/ 0770 media audio
+
+    # Create a folder for audio delta files
+    mkdir /data/audio/acdbdata 0770 media audio
+    mkdir /data/audio/acdbdata/delta 0770 media audio
+
     chown system system /sys/class/timed_output/vibrator/vtg_level
     chown system system /sys/class/timed_output/vibrator/vtg_max
     chown system system /sys/class/timed_output/vibrator/vtg_min
@@ -469,7 +472,11 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
-    # Create FM dir for patchdownloader
+
+    #Create a folder for SRS to be able to create a usercfg file
+    mkdir /data/data/media 0770 media media
+
+    #Create FM dir for patchdownloader
     mkdir /data/misc/fm 0770 system system
     chmod 0770 /data/misc/fm
 
@@ -559,148 +566,138 @@ on property:init.svc.per_mgr=running
 on property:sys.shutdown.requested=*
     stop per_proxy
 
-service qseecomd /system/bin/qseecomd
-   class core
-   user root
-   group root
-   writepid /dev/cpuset/system-background/tasks
+#service qseecomd /system/bin/qseecomd
+#   class core
+#   user root
+#   group root
+#   writepid /dev/cpuset/system-background/tasks
 
-service perfd /system/vendor/bin/perfd
-   class main
-   user root
-   socket perfd seqpacket 0666 root system
-   writepid /dev/cpuset/system-background/tasks
+#service perfd /system/vendor/bin/perfd
+#   class main
+#   user root
+#   socket perfd seqpacket 0666 root system
+#   writepid /dev/cpuset/system-background/tasks
 
-service seempd /system/bin/seempd
-   class late_start
-   user system
-   group system
-   socket seempdw dgram 0666 system system
 
-service secotad /system/bin/secotad
-   class late_start
-   user system
-   group system
+#service thermal-engine /system/vendor/bin/thermal-engine
+#   class main
+#   user root
+#   socket thermal-send-client stream 0666 system system
+#   socket thermal-recv-client stream 0660 system system
+#   socket thermal-recv-passive-client stream 0666 system system
+#   group root
+#   writepid /dev/cpuset/system-background/tasks
 
-service thermal-engine /system/vendor/bin/thermal-engine
-   class main
-   user root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
-   group root
-   writepid /dev/cpuset/system-background/tasks
+#service time_daemon /system/bin/time_daemon
+#   class late_start
+#   user root
+#   group root
+#   writepid /dev/cpuset/system-background/tasks
 
-service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group root
-   writepid /dev/cpuset/system-background/tasks
+#service adsprpcd /system/bin/adsprpcd
+#   class main
+#   user media
+#   group media
+#
+#service audiod /system/bin/audiod
+#   class late_start
+#   user system
+#   group system
 
-service adsprpcd /system/bin/adsprpcd
-   class main
-   user media
-   group media
+#service imsqmidaemon /system/bin/imsqmidaemon
+#    class main
+#    user system
+#    socket ims_qmid stream 0660 system radio
+#    group radio log diag
+#    writepid /dev/cpuset/system-background/tasks
 
-service audiod /system/bin/audiod
-   class late_start
-   user system
-   group system
+#service imsdatadaemon /system/bin/imsdatadaemon
+#    class main
+#    user system
+#    socket ims_datad stream 0660 system radio
+#    group system wifi radio inet log diag
+#    writepid /dev/cpuset/system-background/tasks
+#    disabled
 
-service imsqmidaemon /system/bin/imsqmidaemon
-    class main
-    user system
-    socket ims_qmid stream 0660 system radio
-    group radio log diag
-    writepid /dev/cpuset/system-background/tasks
+#service pd_mapper /system/vendor/bin/pd-mapper
+#    class core
+#    disabled
 
-service imsdatadaemon /system/bin/imsdatadaemon
-    class main
-    user system
-    socket ims_datad stream 0660 system radio
-    group system wifi radio inet log diag
-    writepid /dev/cpuset/system-background/tasks
-    disabled
+#on property:persist.sys.pd_enable=1
+#    start pd_mapper
+#    write /sys/class/service_locator/service_locator_status 1
 
-service pd_mapper /system/vendor/bin/pd-mapper
-    class core
-    disabled
+#on property:persist.sys.pd_enable=0
+#    write /sys/class/service_locator/service_locator_status 0
 
-on property:persist.sys.pd_enable=1
-    start pd_mapper
-    write /sys/class/service_locator/service_locator_status 1
+#on property:sys.ims.QMI_DAEMON_STATUS=1
+#    start imsdatadaemon
 
-on property:persist.sys.pd_enable=0
-    write /sys/class/service_locator/service_locator_status 0
+#service ims_rtp_daemon /system/bin/ims_rtp_daemon
+#    class main
+#    user system
+#    socket ims_rtpd stream 0660 system radio
+#    group radio diag inet log
+#    disabled
 
-on property:sys.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon
+#service imscmservice /system/bin/imscmservice
+#    class main
+#    user system
+#    group radio diag log
+#    writepid /dev/cpuset/system-background/tasks
+#    disabled
 
-service ims_rtp_daemon /system/bin/ims_rtp_daemon
-    class main
-    user system
-    socket ims_rtpd stream 0660 system radio
-    group radio diag inet log
-    disabled
+#on property:sys.ims.DATA_DAEMON_STATUS=1
+#    start ims_rtp_daemon
+#    start imscmservice
 
-service imscmservice /system/bin/imscmservice
-    class main
-    user system
-    group radio diag log
-    writepid /dev/cpuset/system-background/tasks
-    disabled
+#service ppd /system/vendor/bin/mm-pp-dpps
+#    class late_start
+#    user system
+#    group system graphics
+#    socket pps stream 0660 system system
+#    disabled
+#
+#on property:init.svc.surfaceflinger=stopped
+#    stop ppd
 
-on property:sys.ims.DATA_DAEMON_STATUS=1
-    start ims_rtp_daemon
-    start imscmservice
+#on property:init.svc.surfaceflinger=running
+#    start ppd
 
-service ppd /system/vendor/bin/mm-pp-dpps
-    class late_start
-    user system
-    group system graphics
-    socket pps stream 0660 system system
-    disabled
+#on property:init.svc.surfaceflinger=restarting
+#    stop ppd
 
-on property:init.svc.surfaceflinger=stopped
-    stop ppd
+#on property:init.svc.zygote=stopped
+#    stop ppd
 
-on property:init.svc.surfaceflinger=running
-    start ppd
+#on property:init.svc.zygote=running
+#    start ppd
 
-on property:init.svc.surfaceflinger=restarting
-    stop ppd
+#on property:init.svc.zygote=restarting
+#    stop ppd
+#    start imsdatadaemon
 
-on property:init.svc.zygote=stopped
-    stop ppd
+#service tlocd /system/bin/tloc_daemon
+#    class late_start
+#    user system
+#    group drmrpc gps
+#
+#service tlocd /system/bin/tloc_daemon
+#    class late_start
+#    user system
+#    group drmrpc gps
 
-on property:init.svc.zygote=running
-    start ppd
-
-on property:init.svc.zygote=restarting
-    stop ppd
-    start imsdatadaemon
-
-service tlocd /system/bin/tloc_daemon
-    class late_start
-    user system
-    group drmrpc gps
-
-service tlocd /system/bin/tloc_daemon
-    class late_start
-    user system
-    group drmrpc gps
-
-service energy-awareness /system/bin/energy-awareness
-    class main
-    user root
-    group system
-    oneshot
-
-service mdtpd /system/vendor/bin/mdtpd
-    class late_start
-    user root
-    group system radio drmrpc
-
+#service energy-awareness /system/bin/energy-awareness
+#    class main
+#    user root
+#    group system
+#    oneshot
+#
+#service mdtpd /system/vendor/bin/mdtpd
+#    class late_start
+#    user root
+#    group system radio drmrpc
+#
 service qcomsysd /system/bin/qcom-system-daemon
     class main
     user root
@@ -903,11 +900,11 @@ service ftmd /system/bin/logwrapper /system/bin/ftmdaemon
     disabled
     oneshot
 
-#service bridgemgrd /system/bin/bridgemgrd
-#    class late_start
-#    user radio
-#    group radio qcom_diag
-#    disabled
+service bridgemgrd /system/bin/bridgemgrd
+    class late_start
+    user radio
+    group radio qcom_diag
+    disabled
 
 service port-bridge /system/bin/port-bridge
     class main
@@ -915,11 +912,11 @@ service port-bridge /system/bin/port-bridge
     group radio system inet
     oneshot
 
-#service qmiproxy /system/bin/qmiproxy
-#    class main
-#    user radio
-#    group radio qcom_diag
-#    disabled
+service qmiproxy /system/bin/qmiproxy
+    class main
+    user radio
+    group radio qcom_diag
+    disabled
 
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
