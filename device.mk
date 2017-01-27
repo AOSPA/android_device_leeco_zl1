@@ -167,6 +167,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl
 
+# Libshims
+PRODUCT_PACKAGES += \
+    libshims_ims
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8996
