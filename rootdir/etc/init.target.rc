@@ -432,18 +432,6 @@ service sw_coredump /system/bin/sw_coredump
    user root
    group root
 
-# factory test running
-on property:sys.factory.test=running
-   chown system system /sys/devices/soc/soc:qcom,camera-flash/flashled1
-   chown system system /sys/devices/soc/soc:qcom,camera-flash/flashled2
-   setenforce 0
-
-# factory test stoped
-on property:sys.factory.test=stoped
-   chown root root /sys/devices/soc/soc:qcom,camera-flash/flashled1
-   chown root root /sys/devices/soc/soc:qcom,camera-flash/flashled2
-   setenforce 1
-
 #set nvm_service
 service nvm_service /system/bin/nvm_service
     class core
@@ -455,17 +443,3 @@ service nvm_service /system/bin/nvm_service
 on property:sys.boot_completed=1
     start nvm_service
 
-# factory test running
-on property:sys.factory.zeusis.test=running
-   chown system system /sys/class/power_supply/battery/charging_enabled
-   chown system system /sys/devices/soc/soc:qcom,mdss_dsi@0/994000.qcom,mdss_dsi_ctrl0/panelmode
-   chown system system /sys/class/dev_dct/dev_flag/rt_dev_flag
-   chown system system /sys/class/dev_dct/rt_devcheck_flag/rt_devcheck_flag
-   setenforce 0
-# factory test stoped
-on property:sys.factory.zeusis.test=stoped
-   chown root root /sys/class/power_supply/battery/charging_enabled
-   chown root root /sys/devices/soc/soc:qcom,mdss_dsi@0/994000.qcom,mdss_dsi_ctrl0/panelmode
-   chown root root /sys/class/dev_dct/dev_flag/rt_dev_flag
-   chown root root /sys/class/dev_dct/rt_devcheck_flag/rt_devcheck_flag
-   setenforce 1

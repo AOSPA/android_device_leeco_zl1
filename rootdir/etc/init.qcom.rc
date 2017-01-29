@@ -1314,17 +1314,8 @@ service ifaadaemon /system/bin/ifaa_daemon
     group system
     writepid /dev/cpuset/system-background/tasks
 
-# letv
-on property:init.svc.qmuxd=running
-    start wifi_mac
-
 on property:ro.boot.fpsensor=gdx
     start gx_fpd
-
-service wifi_mac /system/bin/logwrapper /system/bin/set_wifi_mac
-    class core
-    seclabel u:r:wifi_mac:s0
-    oneshot
 
 # add by letv for reduced power rate when normal charge be selected begin
 on property:persist.sys.le_fast_chrg_enable=1
