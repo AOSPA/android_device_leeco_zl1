@@ -26,6 +26,7 @@
 LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),le_zl1)
+
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
@@ -79,6 +80,15 @@ $(WCNSS_MAC_SYMLINK): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /persist/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_INI_SYMLINK) $(WCNSS_MAC_SYMLINK)
+
+# Create links for audcal data files
+$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9320; \
+    ln -sf /data/misc/audio/wcd9320_anc.bin \
+    $(TARGET_OUT_ETC)/firmware/wcd9320/wcd9320_anc.bin; \
+    ln -sf /data/misc/audio/mbhc.bin \
+    $(TARGET_OUT_ETC)/firmware/wcd9320/wcd9320_mbhc.bin; \
+    ln -sf /data/misc/audio/wcd9320_mad_audio.bin \
+    $(TARGET_OUT_ETC)/firmware/wcd9320/wcd9320_mad_audio.bin)
 
 $(shell ln -s /dev/block/bootdevice/by-name/msadp $(TARGET_OUT)/etc/firmware/msadp)
 
