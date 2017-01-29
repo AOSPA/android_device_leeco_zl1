@@ -43,3 +43,5 @@
 
 /sys/kernel/debug/msm_core(/.*)?                                u:object_r:debugfs_msm_core:s0
 /sys/kernel/debug/rmt_storage/rmts                              u:object_r:debugfs_rmts:s0
+
+/system/bin/set_wifi_mac      u:object_r:wifi_mac_exec:s0
