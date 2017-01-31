@@ -39,7 +39,8 @@
 
 
 /dev/smartpa_f0_detect u:object_r:smartpa_f0_detect_device:s0
-/dev/i2c-6                                      u:object_r:audio_device:s0
+/dev/i2c-6                                      u:object_r:smartamp_device:s0
+/dev/i2c-*                                      u:object_r:smartamp_device:s0
 
 /sys/kernel/debug/msm_core(/.*)?                                u:object_r:debugfs_msm_core:s0
 /sys/kernel/debug/rmt_storage/rmts                              u:object_r:debugfs_rmts:s0

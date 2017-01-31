@@ -3,3 +3,6 @@ allow audioserver persist_file:file { getattr open read };
 set_prop(audioserver, diag_prop);
 allow audioserver rootfs:lnk_file getattr;
 
+allow audioserver persist_file:dir search;
+
+allow audioserver smartamp_device:chr_file rw_file_perms;
