@@ -43,6 +43,8 @@ on early-init
     chmod 0755 /sys/kernel/debug
 
 on init
+    export LD_SHIM_LIBS "/system/lib/hw/camera.msm8996.so|libcamera_shim.so:/system/lib/libcameraservice.so|libcameraservice_shim.so"
+
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -591,16 +593,6 @@ on property:sys.shutdown.requested=*
 #   user root
 #   group root
 #   writepid /dev/cpuset/system-background/tasks
-
-#service adsprpcd /system/bin/adsprpcd
-#   class main
-#   user media
-#   group media
-#
-#service audiod /system/bin/audiod
-#   class late_start
-#   user system
-#   group system
 
 #service imsqmidaemon /system/bin/imsqmidaemon
 #    class main
@@ -1313,6 +1305,16 @@ service ifaadaemon /system/bin/ifaa_daemon
     user system
     group system
     writepid /dev/cpuset/system-background/tasks
+
+service adsprpcd /system/bin/adsprpcd
+   class main
+   user media
+   group media
+
+service audiod /system/bin/audiod
+   class late_start
+   user system
+   group system
 
 on property:ro.boot.fpsensor=gdx
     start gx_fpd
