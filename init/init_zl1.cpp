@@ -131,7 +131,8 @@ void vendor_load_properties()
     prop = property_get("ro.board.platform");
     if (prop != ANDROID_TARGET)
        return;
-    property_set("ro.product.device", "le_zl1");
+    property_set("ro.config.product", "le_zl1");
+    property_set("ro.build.product", "le_zl1");
 
 	if (read_file2(DEVINFO_FILE, device, sizeof(device)))
 	{
