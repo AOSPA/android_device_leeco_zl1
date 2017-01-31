@@ -237,5 +237,3 @@ TARGET_RECOVERY_DEVICE_MODULES := libbinder libgui libui libEGL libGLESv1_CM lib
 TW_RECOVERY_ADDITIONAL_RELINK_FILES := $(OUT)/system/lib64/libbinder.so $(OUT)/system/lib64/libgui.so $(OUT)/system/lib64/libui.so $(OUT)/system/lib64/libEGL.so $(OUT)/system/lib64/libGLESv1_CM.so $(OUT)/system/lib64/libGLESv2.so  $(OUT)/system/lib64/libGLESv3.so $(OUT)/system/lib64/libprotobuf-cpp-lite.so $(OUT)/system/lib64/libsync.so
 TW_NEW_ION_HEAP := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-
-TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
