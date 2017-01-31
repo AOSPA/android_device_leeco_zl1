@@ -222,12 +222,14 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     hostapd \
     dhcpcd.conf \
-    wpa_supplicant
+    wpa_supplicant \
+    wpa_supplicant.conf
 
 # Camera
 PRODUCT_PACKAGES += \
     Camera2 \
     libcamera_shim \
+    libcameraservice_shim \
     libstlport
 
 # power
@@ -277,7 +279,7 @@ PRODUCT_PACKAGES += \
     consumerir.default
 
 #Radio
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     FMRadio \
     qcom.fmradio \
     qcom.fmradio.xml \
