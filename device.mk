@@ -165,7 +165,7 @@ PRODUCT_COPY_FILES += \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayout/synaptics_dsx_v26.kl:system/usr/keylayout/synaptics_dsx_v26.kl \
+    $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl
 
 # Lights
 PRODUCT_PACKAGES += \
