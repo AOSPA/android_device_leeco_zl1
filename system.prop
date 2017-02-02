@@ -20,6 +20,7 @@ persist.rild.nitz_short_ons_3=
 DEVICE_PROVISIONED=1
 # Start in global mode
 ro.telephony.default_network=22,22
+telephony.lteOnGSMDevice=1
 
 debug.sf.hw=1
 debug.egl.hw=1
