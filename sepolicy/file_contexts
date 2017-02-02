@@ -31,9 +31,6 @@
 /sys/devices/soc/qpnp-smbcharger-[0-9a-f]+/power_supply/battery/voltage_now u:object_r:sysfs_batteryinfo:s0
 /sys/devices/soc/qpnp-smbcharger-[0-9a-f]+/power_supply/battery/temp u:object_r:sysfs_batteryinfo:s0
 
-# Expansion of these hooks is a bit unconventional
-/cache/org\.omnirom\.keyhandler\.dex       u:object_r:dalvikcache_data_file:s0
-
 # Vibrator config
 /sys/devices/virtual/timed_output/vibrator(/.*)?	u:object_r:sysfs_vibrator:s0
 

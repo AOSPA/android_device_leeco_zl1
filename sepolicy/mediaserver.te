@@ -8,3 +8,5 @@ allow mediaserver camera_data_file:dir search;
 allow mediaserver audiod:binder call;
 
 allow mediaserver smartamp_device:chr_file { read write ioctl open };
+
+allow mediaserver persist_file:file { r_file_perms };
