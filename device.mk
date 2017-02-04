@@ -227,9 +227,7 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     Camera2 \
-    libcamera_shim \
-    libcameraservice_shim \
-    libstlport
+    camera.msm8996
 
 # power
 PRODUCT_PACKAGES += \
