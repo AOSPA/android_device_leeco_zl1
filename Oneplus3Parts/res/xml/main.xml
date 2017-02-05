@@ -58,16 +58,21 @@
             android:entryValues="@array/slider_mode_values"
             android:persistent="false" />
 	</PreferenceCategory>
+
 -->
-	<!--<PreferenceCategory
+	<PreferenceCategory
         android:title="@string/buttons_title">
 		<CheckBoxPreference
 			android:key="swap_back_recents"
 			android:summary="@string/swap_back_recents_summary"
 			android:title="@string/swap_back_recents_title"
 			android:persistent="false" />
-	</PreferenceCategory>-->
+	</PreferenceCategory>
 <!--
+=======
+	</PreferenceCategory>
+
+>>>>>>> bf2e6f2... op3(t): expose swap back and app switch key in device settings
 	<PreferenceCategory
         android:title="@string/graphics_title">
 		<CheckBoxPreference
