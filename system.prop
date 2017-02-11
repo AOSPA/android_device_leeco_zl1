@@ -280,8 +280,6 @@ persist.sys.ssr.enable_ramdumps=1
 #default ramdump mode
 #persist.sys.dload.state=1
 
-#WYQ, to force call stick on CS (NOT switch to VoLTE)
-persist.radio.cs_srv_type=1
 #add ignore_dom_time
 persist.radio.ignore_dom_time=5
 
@@ -349,8 +347,6 @@ dalvik.vm.stack-trace-file=/data/anr/traces.txt
 persist.gps.qc_nlp_in_use=1
 persist.loc.nlp_name=com.qualcomm.location
 ro.gps.agps_provider=1
-persist.radio.calls.on.ims=0
-persist.radio.jbims=0
 persist.radio.csvt.enabled=false
 persist.radio.rat_on=combine
 persist.radio.mt_sms_ack=20
@@ -363,7 +359,3 @@ persist.radio.mt_sms_ack=20
 
 # ATFWD
 persist.radio.atfwd.start=false
-
-# WIFI CALLING
-persist.data.iwlan.enable=true
-
