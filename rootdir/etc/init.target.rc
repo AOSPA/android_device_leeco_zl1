@@ -212,6 +212,7 @@ service time_daemon /system/bin/time_daemon
    class late_start
    user root
    group root
+   writepid /dev/cpuset/system-background/tasks
 
 
 service usf_tester /system/bin/usf_tester

@@ -161,8 +161,8 @@ on boot
     chmod 2770 /dev/socket/qmux_gps
 
     mkdir /persist/drm 0770 system system
-
     mkdir /persist/bluetooth 0770 bluetooth bluetooth
+    mkdir /persist/time 0770 system system
 
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
@@ -422,7 +422,7 @@ on post-fs-data
     mkdir /data/hostapd 0770 system wifi
 
     # Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
+    mkdir /data/time/ 0770 system system
 
     mkdir /data/audio/ 0770 media audio
 
@@ -532,12 +532,6 @@ on property:init.svc.per_mgr=running
 
 on property:sys.shutdown.requested=*
     stop per_proxy
-
-service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group root
-   writepid /dev/cpuset/system-background/tasks
 
 #on property:persist.sys.pd_enable=1
 #    start pd_mapper
@@ -1253,3 +1247,8 @@ on property:persist.sys.le_fast_chrg_enable=1
 on property:persist.sys.le_fast_chrg_enable=0
     write /sys/class/power_supply/le_ab/le_quick_charge_mode 1
 # add by letv for reduced power rate when normal charge be selected end
+on property:vold.decrypt=trigger_restart_min_framework
+    start time_daemon
+
+on property:vold.decrypt=trigger_restart_framework
+    restart time_daemon
