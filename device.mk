@@ -232,7 +232,8 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     Camera2 \
-    camera.msm8996
+    camera.msm8996 \
+    libstlport
 
 # power
 PRODUCT_PACKAGES += \
@@ -286,10 +287,6 @@ PRODUCT_PACKAGES += \
     qcom.fmradio \
     qcom.fmradio.xml \
     libqcomfm_jni.so
-
-#PRODUCT_PACKAGES += \
-    gatekeeper.msm8996 \
-    keystore.msm8996
 
 # QCom
 PRODUCT_PACKAGES += \
