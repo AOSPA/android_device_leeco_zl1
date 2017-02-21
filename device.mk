@@ -242,7 +242,7 @@ PRODUCT_PACKAGES += \
 #    $(LOCAL_PATH)/configs/power_profiles.xml:system/etc/power_profiles.xml
 
 PRODUCT_PACKAGES += \
-    Oneplus3Parts
+    DeviceParts
 
 # bluetooth
 PRODUCT_COPY_FILES += \
