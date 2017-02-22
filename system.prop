@@ -156,6 +156,9 @@ audio.offload.track.enable=false
 #Enable music through deep buffer
 audio.deep_buffer.media=true
 
+#QC property used when calculating client heap size in audio flinger
+audio.heap.size.multiplier=7
+
 #enable voice path for PCM VoIP by default
 use.voice.path.for.pcm.voip=true
 
