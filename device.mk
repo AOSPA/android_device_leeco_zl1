@@ -231,7 +231,10 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     Camera2 \
+    libqomx_core \
     camera.msm8996 \
+    libmmcamera_interface \
+    libmmjpeg_interface \
     libstlport
 
 # power
