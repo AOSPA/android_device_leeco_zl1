@@ -134,7 +134,7 @@
     </backend_names>
 
     <device_names>
-        <!-- Output devices -->                                                
+        <!-- Output devices -->
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER" alias="voice-speaker" />
     </device_names>
 
