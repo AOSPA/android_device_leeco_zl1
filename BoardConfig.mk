@@ -219,7 +219,7 @@ BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
 
 BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp
 
-WITH_DEXPREOPT := false
+WITH_DEXPREOPT := true
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
