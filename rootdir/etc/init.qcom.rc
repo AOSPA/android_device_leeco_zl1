@@ -255,29 +255,12 @@ on boot
     # bond0 used by FST Manager
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
-    # change this when HAL3 is working
-    setprop persist.camera.HAL3.enabled 0
-
-    # for fingerprint calibration
-    chown system system /persist/qc_senseid/bg_estimation/bg_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small1_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small1_off_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small2_basis.dat
-    chown system system /persist/qc_senseid/bg_estimation/bg_small2_off_basis.dat
-
     chown system system /dev/ttyHSL1
     chmod 0666 /dev/ttyHSL1
     
-     # wake_gesture
-    chown system system /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input3/wake_gesture
-
     # Buttons
     chown root system /proc/touchpanel/capacitive_keys_enable
     chmod 0660 /proc/touchpanel/capacitive_keys_enable
-
-    # FM
-    chmod 0644 /dev/radio0
-    chown fm_radio fm_radio /dev/radio0
 
 on post-fs
 
