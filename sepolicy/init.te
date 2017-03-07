@@ -11,3 +11,4 @@ allow init property_socket:sock_file write;
 allow init proc:lnk_file setattr;
 
 allow init wifi_mac_exec:file getattr;
+allow init proc_kernel_sched:file rw_file_perms;

@@ -14,3 +14,7 @@ type persist_property_file, file_type;
 
 type debugfs_msm_core, debugfs_type, fs_type;
 type debugfs_rmts, debugfs_type, fs_type;
+
+type proc_irq, fs_type;
+type proc_kernel_sched, fs_type;
+type sysfs_power_management, sysfs_type, fs_type;
