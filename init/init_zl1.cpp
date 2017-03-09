@@ -145,7 +145,7 @@ void vendor_load_properties()
 	{
            property_set("persist.multisim.config", "dsds");
            property_set("persist.radio.multisim.config", "dsds");
-           property_set("ro.telephony.default_network", "9,1");
+           property_set("ro.telephony.default_network", "22,22");
            property_set("ro.product.model", "LEX720");
            property_set("ro.product.name", "ZL1_CN");
            property_set("persist.radio.cs_srv_type", "1");
