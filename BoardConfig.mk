@@ -173,8 +173,11 @@ WIFI_DRIVER_FW_PATH_P2P          := "p2p"
 #WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 
 # charger
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm8996
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
+# not really for recovery anymor... but healthd still uses it
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 # power hal
 TARGET_PROVIDES_POWERHAL := true
@@ -221,10 +224,6 @@ BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp
 
 WITH_DEXPREOPT := true
 
-# Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
 # Recovery:Start
 TARGET_RECOVERY_FSTAB := $(BOARD_PATH)/configs/fstab.qcom
 TW_THEME := portrait_hdpi
@@ -232,7 +231,7 @@ BOARD_HAS_NO_REAL_SDCARD := true
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
-TW_DEFAULT_LANGUAGE := en-US
+TW_DEFAULT_LANGUAGE := en
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/soc/6a00000.ssusb/6a00000.dwc3/gadget/lun%d/file"
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_EXCLUDE_SUPERSU := true
