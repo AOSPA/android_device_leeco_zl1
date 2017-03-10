@@ -357,10 +357,10 @@ persist.radio.rat_on=combine
 persist.radio.mt_sms_ack=20
 #ro.mdtp.package_name2=com.qualcomm.qti.securemsm.mdtp.MdtpDemo
 
-persist.camera.HAL3.enabled=0
-camera2.portability.force_api=1
-media.stagefright.legacyencoder=true
-media.stagefright.less-secure=true
+persist.camera.HAL3.enabled=1
+#camera2.portability.force_api=1
+#media.stagefright.legacyencoder=true
+#media.stagefright.less-secure=true
 #persist.camera.gyro.disable=0
 #persist.camera.imglib.fddsp=1
 
