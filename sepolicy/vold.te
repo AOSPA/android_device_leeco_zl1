@@ -4,3 +4,6 @@ allow vold system_block_device:blk_file getattr;
 allow vold adsprpcd_file:dir r_file_perms;
 
 allow vold persist_file:dir { getattr read open ioctl };
+
+allow vold proc_irq:dir  { getattr read open ioctl };
+

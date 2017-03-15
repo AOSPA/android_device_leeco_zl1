@@ -139,7 +139,7 @@ sdm.perf_hint_window=50
 tunnel.audio.encode=false
 
 #Buffer size in kbytes for compress offload playback
-audio.offload.buffer.size.kb=32
+audio.offload.buffer.size.kb=64
 
 #Enable offload audio video playback by default
 audio.offload.video=true
@@ -175,7 +175,7 @@ audio.offload.gapless.enabled=true
 audio.safx.pbe.enabled=true
 
 #parser input buffer size(256kb) in byte stream mode
-#audio.parser.ip.buffer.size=262144
+audio.parser.ip.buffer.size=262144
 
 #property for vendor specific library
 ro.vendor.gt_library=libqti-gt.so
@@ -306,7 +306,7 @@ ro.config.le_hardware_version=HW_1.0.0
 # system.prop for letv common
 #
 #parser input buffer size(0kb) in frame stream mode
-audio.parser.ip.buffer.size=0
+#audio.parser.ip.buffer.size=0
 
 #Increase the ignore dom time
 persist.radio.ignore_dom_time=5

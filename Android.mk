@@ -119,6 +119,8 @@ $(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9320; \
     ln -sf /data/misc/audio/wcd9320_mad_audio.bin \
     $(TARGET_OUT_ETC)/firmware/wcd9320/wcd9320_mad_audio.bin)
 
-$(shell ln -s /dev/block/bootdevice/by-name/msadp $(TARGET_OUT)/etc/firmware/msadp)
+#$(shell ln -s /dev/block/bootdevice/by-name/msadp $(TARGET_OUT)/etc/firmware/msadp)
+
+include device/leeco/le_zl1/tftp.mk
 
 endif
