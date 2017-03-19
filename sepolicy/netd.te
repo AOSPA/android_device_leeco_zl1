@@ -5,3 +5,6 @@ allow netd firmware_file:dir search;
 
 allow netd self:capability { setuid sys_module setgid };
 allow netd self:packet_socket create_socket_perms;
+
+allow netd device:file write;
+
