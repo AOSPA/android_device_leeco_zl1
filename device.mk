@@ -209,7 +209,6 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-    libOmxVdecHevc \
     libstagefrighthw
 
 # RIL
@@ -233,8 +232,7 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     Camera2 \
-    libcamera_shim \
-    libstlport
+    libcamera_shim
 
 # power
 PRODUCT_PACKAGES += \
