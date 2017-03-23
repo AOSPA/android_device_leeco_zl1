@@ -21,4 +21,5 @@
 # function: add_lunch_combo generic-eng
 
 add_lunch_combo omni_le_zl1-userdebug
+add_lunch_combo omni_zl1-userdebug
 add_lunch_combo omni_le_zl1-eng
