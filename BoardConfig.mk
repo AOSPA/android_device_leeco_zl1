@@ -18,7 +18,7 @@
 # device-specific aspects (drivers) with a device-agnostic
 # product configuration (apps).
 #
--include vendor/leeco/le_zl1/BoardConfigVendor.mk
+-include vendor/leeco/zl1/BoardConfigVendor.mk
 
 BOARD_PATH := device/leeco/zl1
 BOARD_VENDOR := leeco

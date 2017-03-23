@@ -19,7 +19,7 @@
 # product configuration (apps).
 #
 
-$(call inherit-product, vendor/leeco/le_zl1/le_zl1-vendor.mk)
+$(call inherit-product, vendor/leeco/zl1/zl1-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
