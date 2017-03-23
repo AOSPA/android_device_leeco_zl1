@@ -231,7 +231,7 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Camera2 \
+    SnapdragonCamera \
     libcamera_shim
 
 # power
