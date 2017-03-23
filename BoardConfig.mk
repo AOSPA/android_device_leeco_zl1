@@ -20,11 +20,11 @@
 #
 -include vendor/leeco/le_zl1/BoardConfigVendor.mk
 
-BOARD_PATH := device/leeco/le_zl1
+BOARD_PATH := device/leeco/zl1
 BOARD_VENDOR := leeco
 
 TARGET_NO_BOOTLOADER := true
-TARGET_OTA_ASSERT_DEVICE := le_zl1,LEX727,LEX720,le_LEX720
+TARGET_OTA_ASSERT_DEVICE := zl1,le_zl1,LEX727,LEX720,le_LEX720
 TARGET_BOOTLOADER_BOARD_NAME := msm8996
 
 # Platform

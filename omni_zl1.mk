@@ -36,7 +36,7 @@ TARGET_BOOTANIMATION_SIZE := 1080x720
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/leeco/le_zl1/device.mk)
+$(call inherit-product, device/leeco/zl1/device.mk)
 
 # SELinux
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -46,7 +46,7 @@ PRODUCT_COPY_FILES += \
     bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := omni_le_zl1
+PRODUCT_NAME := omni_zl1
 PRODUCT_DEVICE := le_zl1
 PRODUCT_BRAND := LeEco
 PRODUCT_MANUFACTURER := LeMobile

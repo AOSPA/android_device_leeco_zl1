@@ -99,7 +99,7 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/leeco/le_zl1/prebuilt/system,system)
+    $(call find-copy-subdir-files,*,device/leeco/zl1/prebuilt/system,system)
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 480dpi

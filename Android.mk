@@ -121,6 +121,6 @@ $(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9320; \
 
 #$(shell ln -s /dev/block/bootdevice/by-name/msadp $(TARGET_OUT)/etc/firmware/msadp)
 
-include device/leeco/le_zl1/tftp.mk
+include device/leeco/zl1/tftp.mk
 
 endif
