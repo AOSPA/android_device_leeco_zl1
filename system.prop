@@ -262,7 +262,7 @@ ro.qcom.ad.sensortype=3
 #persist.sys.leui.exp_program=0
 
 #disable pdaf Face frame
-#persist.camera.stats.test=5
+persist.camera.stats.test=5
 
 #ssr default value
 persist.sys.ssr.restart_level=ALL_ENABLE
@@ -320,7 +320,7 @@ persist.radio.sib16_support=1
 persist.radio.custom_ecc=1
 af.fast_track_multiplier=1
 audio_hal.period_size=192
-#camera.disable_zsl_mode=1
+camera.disable_zsl_mode=1
 persist.sys.sf.lcd_density=420
 net.bt.name=LePro3
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
