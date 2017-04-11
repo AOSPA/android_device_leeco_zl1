@@ -9,3 +9,4 @@ allow perfd sysfs_power_management:dir search;
 allow perfd system_data_file:dir { add_name write };
 allow perfd system_data_file:sock_file { create setattr write unlink };
 allow perfd system_data_file:dir remove_name;
+allow perfd device:file rw_file_perms;
