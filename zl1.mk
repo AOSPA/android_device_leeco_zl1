@@ -259,6 +259,9 @@ PRODUCT_PACKAGES += \
     libxml2 \
     libprotobuf-cpp-full
 
+# Telephony
+PRODUCT_BOOT_JARS += qti-telephony-common
+
 # Roaming
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=false
