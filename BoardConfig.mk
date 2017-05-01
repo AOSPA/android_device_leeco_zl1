@@ -122,6 +122,7 @@ AUDIO_FEATURE_ENABLED_SPKR_PROTECTION := false
 
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
+TARGET_HAS_LEGACY_HSR := true
 
 # Pre-optimization
 ifneq ($(filter-out false,$(USE_DEXPREOPT)),)
