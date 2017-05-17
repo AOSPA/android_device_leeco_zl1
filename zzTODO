@@ -1,3 +1,7 @@
 - Import Qperformance stubs and pin them at config_defaultPinnerServiceFiles
 - Replace our power profile.
 - Disable SSR stats, broken on latest Kernel modem.
+- Try to enable IMS.
+- Set BOARD_CHARGER_ENABLE_SUSPEND to false.
+- Try to switch to "kryo" on TARGET_CPU_VARIANT.
+- Create the performance/ section.

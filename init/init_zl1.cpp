@@ -63,7 +63,6 @@ void init_alarm_boot_properties()
     char buf[64];
 
     if(read_file2(alarm_file, buf, sizeof(buf))) {
-
     /*
      * Setup ro.alarm_boot value to true when it is RTC triggered boot up
      * For existing PMIC chips, the following mapping applies
@@ -79,43 +78,41 @@ void init_alarm_boot_properties()
      * 7 -> CBLPWR_N pin toggled (for external power supply)
      * 8 -> KPDPWR_N pin toggled (power key pressed)
      */
- if (buf[0] == '0') {
-       property_set("ro.boot.bootreason", "invalid");
-       property_set("ro.alarm_boot", "false");
-   }
- else if (buf[0] == '1') {
-       property_set("ro.boot.bootreason", "hard_reset");
-       property_set("ro.alarm_boot", "false");
-   }
- else if (buf[0] == '2') {
-       property_set("ro.boot.bootreason", "smpl");
-       property_set("ro.alarm_boot", "false");
-   }
- else if (buf[0] == '3'){
-       property_set("ro.alarm_boot", "true");
-   }
- else if (buf[0] == '4') {
-       property_set("ro.boot.bootreason", "dc_chg");
-       property_set("ro.alarm_boot", "false");
-   }
- else if (buf[0] == '5') {
-       property_set("ro.boot.bootreason", "usb_chg");
-       property_set("ro.alarm_boot", "false");
-   }
- else if (buf[0] == '6') {
-       property_set("ro.boot.bootreason", "pon1");
-       property_set("ro.alarm_boot", "false");
-   }
- else if (buf[0] == '7') {
-       property_set("ro.boot.bootreason", "cblpwr");
-       property_set("ro.alarm_boot", "false");
-   }
- else if (buf[0] == '8') {
-       property_set("ro.boot.bootreason", "kpdpwr");
-       property_set("ro.alarm_boot", "false");
-   }
-
-
+        if (buf[0] == '0') {
+            property_set("ro.boot.bootreason", "invalid");
+            property_set("ro.alarm_boot", "false");
+        }
+        else if (buf[0] == '1') {
+            property_set("ro.boot.bootreason", "hard_reset");
+            property_set("ro.alarm_boot", "false");
+        }
+        else if (buf[0] == '2') {
+            property_set("ro.boot.bootreason", "smpl");
+            property_set("ro.alarm_boot", "false");
+        }
+        else if (buf[0] == '3'){
+            property_set("ro.alarm_boot", "true");
+        }
+        else if (buf[0] == '4') {
+            property_set("ro.boot.bootreason", "dc_chg");
+            property_set("ro.alarm_boot", "false");
+        }
+        else if (buf[0] == '5') {
+            property_set("ro.boot.bootreason", "usb_chg");
+            property_set("ro.alarm_boot", "false");
+        }
+       else if (buf[0] == '6') {
+            property_set("ro.boot.bootreason", "pon1");
+            property_set("ro.alarm_boot", "false");
+        }
+        else if (buf[0] == '7') {
+            property_set("ro.boot.bootreason", "cblpwr");
+            property_set("ro.alarm_boot", "false");
+        }
+        else if (buf[0] == '8') {
+            property_set("ro.boot.bootreason", "kpdpwr");
+            property_set("ro.alarm_boot", "false");
+        }
     }
 }
 
@@ -134,15 +131,15 @@ void vendor_load_properties()
     property_set("ro.config.product", "le_zl1");
     property_set("ro.build.product", "le_zl1");
 
-	if (read_file2(DEVINFO_FILE, device, sizeof(device)))
-	{
-		if (!strncmp(device, "le_zl1_oversea", 14)) {
-			isLEX720 = 0;
-		}
-	}
+    if (read_file2(DEVINFO_FILE, device, sizeof(device)))
+    {
+        if (!strncmp(device, "le_zl1_oversea", 14)) {
+            isLEX720 = 0;
+        }
+    }
 
-	if (isLEX720)
-	{
+    if (isLEX720)
+    {
            property_set("persist.multisim.config", "dsds");
            property_set("persist.radio.multisim.config", "dsds");
            property_set("ro.telephony.default_network", "22,22");
@@ -152,7 +149,6 @@ void vendor_load_properties()
            property_set("persist.radio.jbims", "true");
            property_set("persist.radio.calls.on.ims", "true");
            property_set("persist.data.iwlan.enable", "false");
-           property_set("ro.com.google.clientidbase", "android-letv");
            property_set("ro.build.fingerprint", "LeEco/ZL1_CN/le_zl1:6.0.1/WAXCNFN5801811012S/letv11011204:user/release-keys");
            property_set("ro.build.description", "le_zl1-user 6.0.1 WAXCNFN5801811012S eng.letv.20161101.120034 release-keys");
         } else {
@@ -168,10 +164,8 @@ void vendor_load_properties()
            property_set("ro.product.model", "LEX727");
            property_set("ro.product.name", "ZL1_NA");
            property_set("ro.product.customize", "oversea");
-           property_set("ro.com.google.clientidbase", "android-letv");
            property_set("ro.build.fingerprint", "LeEco/ZL1_NA/le_zl1:6.0.1/WAXCNFN5801811012S/letv11011204:user/release-keys");
            property_set("ro.build.description", "le_zl1-user 6.0.1 WAXCNFN5801811012S eng.letv.20161101.120034 release-keys");
     }
     init_alarm_boot_properties();
 }
-

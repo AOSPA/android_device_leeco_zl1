@@ -20,13 +20,13 @@
 #
 
 $(call inherit-product, vendor/leeco/zl1/zl1-vendor.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-4096-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Charger
 PRODUCT_PACKAGES += \
-    omni_charger_res_images
+    charger \
+    charger_res_images
 
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -153,6 +153,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf \
     $(LOCAL_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf
 
+# Telephony
+PRODUCT_BOOT_JARS += qti-telephony-common
+
 # IPv6
 PRODUCT_PACKAGES += \
     ebtables \
@@ -176,7 +179,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.msm8996
+    lights.qcom
 
 # Media
 PRODUCT_COPY_FILES += \

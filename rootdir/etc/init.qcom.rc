@@ -634,9 +634,10 @@ on property:persist.sys.ssr.enable_ramdumps=1
 on property:persist.sys.ssr.enable_ramdumps=0
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
 
-service charger /sbin/healthd -c
+service charger /charger
     class charger
-    group log
+    critical
+    group system graphics
     seclabel u:r:healthd:s0
     writepid /dev/cpuset/system-background/tasks
 
@@ -908,7 +909,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-# FST Manager can be started by property_set("ctl.start", "fstman:<hostap ctrl iface>");
+# FST Manager with hostapd (softap) - all settings inside ini file.
 service fstman /system/bin/fstman -B -ddd -c /data/misc/wifi/fstman.ini
     user wifi
     group wifi net_admin net_raw
