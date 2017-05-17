@@ -242,9 +242,6 @@ PRODUCT_PACKAGES += \
 #PRODUCT_COPY_FILES += \
 #    $(LOCAL_PATH)/configs/power_profiles.xml:system/etc/power_profiles.xml
 
-PRODUCT_PACKAGES += \
-    DeviceParts
-
 # bluetooth
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh

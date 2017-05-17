@@ -1,0 +1,3 @@
+- Import Qperformance stubs and pin them at config_defaultPinnerServiceFiles
+- Replace our power profile.
+- Disable SSR stats, broken on latest Kernel modem.
