@@ -15,11 +15,8 @@
 -->
 
 <resources>
-    <!-- Opens back camera using openLegacy() -->
-    <bool name="back_camera_open_legacy">false</bool>
-
-    <!-- Opens front camera using openLegacy() -->
-    <bool name="front_camera_open_legacy">false</bool>
+    <!-- Enable HAL3 by default -->
+    <bool name="config_use_hal3">true</bool>
 
     <!-- Restart preview for back camera onPictureTaken -->
     <bool name="back_camera_restart_preview_onPictureTaken">true</bool>
