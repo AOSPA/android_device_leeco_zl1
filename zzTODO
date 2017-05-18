@@ -11,3 +11,4 @@
 - Move to HAL2 to enhance options.
 - Alphabetically order system.prop file.
 - Remove EAS stubs, they stink.
+- Set 'persist.audio.fluence.voicerec=true'.
