@@ -18,6 +18,23 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Minimum screen brightness setting allowed by the power manager.
+       The user is forbidden from setting the brightness below this level. -->
+    <integer name="config_buttonBrightnessSettingMinimum">60</integer>
+
+    <!-- Default button brightness setting.
+        Must be in the range specified by minimum and maximum. -->
+    <integer name="config_buttonBrightnessSettingDefault">160</integer>
+
+    <!-- Whether notify fingerprint client of successful cancelled authentication -->
+    <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
+
+    <!-- Keypress Boost duration -->
+    <integer name="fpunlockboost_duration">800</integer>
+
+    <!-- Whether notify fingerprint client of successful cancelled authentication -->
+    <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
+
     <!-- Hardware keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
@@ -56,7 +73,4 @@
 
     <!-- Internal default to navigation bar value -->
     <bool name="config_defaultToNavigationBar">false</bool>
-
-    <!-- Whether notify fingerprint client of successful cancelled authentication -->
-    <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
 </resources>

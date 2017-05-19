@@ -5,3 +5,4 @@
 - Set BOARD_CHARGER_ENABLE_SUSPEND to false.
 - Try to switch to "kryo" on TARGET_CPU_VARIANT.
 - Create the performance/ section.
+- REDO support for lid screen on/off.
