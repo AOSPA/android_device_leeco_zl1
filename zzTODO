@@ -6,3 +6,4 @@
 - Try to switch to "kryo" on TARGET_CPU_VARIANT.
 - Create the performance/ section.
 - REDO support for lid screen on/off.
+- Remove all audio variables, we handle them in hardware/qcom/audio.
