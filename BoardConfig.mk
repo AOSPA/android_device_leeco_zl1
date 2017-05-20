@@ -164,8 +164,16 @@ AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 
-# Disable "--compile-pic" flag.
-WITH_DEXPREOPT_PIC := false
+# Pre-optimization
+ifneq ($(filter-out false,$(USE_DEXPREOPT)),)
+  # Enable dex-preoptimization.
+  WITH_DEXPREOPT := true
+  # Disable "--compile-pic" flag.
+  WITH_DEXPREOPT_PIC := false
+else
+  # Disable dex-preoptimization.
+  WITH_DEXPREOPT := false
+endif
 
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true

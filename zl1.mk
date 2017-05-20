@@ -143,6 +143,11 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     tinymix
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audio_output_policy.conf:system/etc/audio_output_policy.conf \
+    $(LOCAL_PATH)/audio/mixer_paths_tasha.xml:system/etc/mixer_paths_tasha.xml \
+    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml
+
 # AV Enhancements
 PRODUCT_PACKAGES += \
     libdashplayer \
@@ -261,16 +266,6 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.msm8996
-
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/configs/power_profiles.xml:system/etc/power_profiles.xml
-
-# Bluetooth
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/FOSSConfig.xml:system/etc/FOSSConfig.xml
 
 # ANT+ stack
 PRODUCT_PACKAGES += \

@@ -329,7 +329,7 @@ on boot
 
     chown system system /dev/ttyHSL1
     chmod 0666 /dev/ttyHSL1
-    
+
     # Buttons
     chown root system /proc/touchpanel/capacitive_keys_enable
     chmod 0660 /proc/touchpanel/capacitive_keys_enable
