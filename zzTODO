@@ -1,9 +1,12 @@
 - Import Qperformance stubs and pin them at config_defaultPinnerServiceFiles
 - Replace our power profile.
-- Disable SSR stats, broken on latest Kernel modem.
-- Try to enable IMS.
-- Set BOARD_CHARGER_ENABLE_SUSPEND to false.
-- Try to switch to "kryo" on TARGET_CPU_VARIANT.
+- Disable SSR stats, broken on latest Kernel modem. (TEMP)
+- Try to enable IMS. (DONE)
+- Try to switch to "kryo" on TARGET_CPU_VARIANT. (DONE)
 - Create the performance/ section.
 - REDO support for lid screen on/off.
 - Remove all audio variables, we handle them in hardware/qcom/audio.
+- Check if we need 'atfwd' support, remove it.
+- Enable all fluence properties.
+- Move to HAL2 to enhance options.
+- Alphabetically order system.prop file.

@@ -253,26 +253,6 @@
          The default is false. -->
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
 
-    <!-- Defines the default set of global actions. Actions may still be disabled or hidden based
-         on the current state of the device.
-         Each item must be one of the following strings:
-         "power" = Power off
-         "settings" = An action to launch settings
-         "airplane" = Airplane mode toggle
-         "bugreport" = Take bug report, if available
-         "silent" = silent mode
-         "users" = list of users
-         "restart" = restart device
-         "screenshot" = screenshot
-         -->
-    <string-array translatable="false" name="config_globalActionsList">
-        <item>power</item>
-        <item>restart</item>
-        <item>screenshot</item>
-        <item>bugreport</item>
-        <item>users</item>
-    </string-array>
-
     <!-- Flag specifying whether WFC over IMS is available on device -->
     <bool name="config_device_wfc_ims_available">true</bool>
 

@@ -102,14 +102,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/leeco/zl1/prebuilt/system,system)
 
-# QPerformance
-# PRODUCT_BOOT_JARS += QPerformance
-
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 420dpi
 PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
 
+# Characteristics
 PRODUCT_CHARACTERISTICS := nosdcard
 
 # Display
@@ -127,10 +125,13 @@ PRODUCT_PACKAGES += \
 
 include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
 
-# Android EGL implementation
+# EGL
 PRODUCT_PACKAGES += libGLES_android
 
 # Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.audio.fluencetype=fluence
+
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
@@ -140,8 +141,7 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing \
-    tinymix
+    libqcomvoiceprocessing
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_output_policy.conf:system/etc/audio_output_policy.conf \
@@ -155,7 +155,7 @@ PRODUCT_PACKAGES += \
     qcmediaplayer \
     libextmedia_jni
 
-# Fingerprint sensor
+# Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd
 
@@ -165,9 +165,6 @@ PRODUCT_PACKAGES += \
     libgnsspps \
     libcurl
 
-#PRODUCT_BOOT_JARS += com.android.location.provider
-#PRODUCT_BOOT_JARS += izat.xt.srv
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
     $(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
@@ -175,9 +172,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/lowi.conf:system/etc/lowi.conf \
     $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf \
     $(LOCAL_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf
-
-# Telephony
-# PRODUCT_BOOT_JARS += qti-telephony-common
 
 # IPv6
 PRODUCT_PACKAGES += \
@@ -243,6 +237,10 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-full
+
+# Roaming
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.android.dataroaming=false
 
 # IPCM
 PRODUCT_PACKAGES += \
