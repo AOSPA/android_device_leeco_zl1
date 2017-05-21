@@ -1,4 +1,2 @@
 get_prop(wcnss_filter, diag_prop);
-
 allow wcnss_filter rootfs:lnk_file getattr;
-

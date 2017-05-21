@@ -115,10 +115,6 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libtinyxml
 
-# Alipay / WeChat
-#PRODUCT_BOOT_JARS += \
-    org.ifaa.android.manager
-
 include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
 
 # EGL

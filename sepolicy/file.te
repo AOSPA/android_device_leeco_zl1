@@ -3,13 +3,10 @@ type nv_data_file, file_type;
 type sysfs_vibrator, fs_type, sysfs_type;
 type proc_stat, fs_type;
 
-# daizhiling add for goodix_fingerprint begin
-# Type for Goodix fingerprint template file.
 type gx_fp_lib_file, file_type, data_file_type;
 type gx_fpd_lib_file, data_file_type;
 type gx_fpd_data_file, file_type, data_file_type;
 
-# Persistent property storage
 type persist_property_file, file_type;
 
 type debugfs_msm_core, debugfs_type, fs_type;

@@ -10,3 +10,4 @@
 - Enable all fluence properties.
 - Move to HAL2 to enhance options.
 - Alphabetically order system.prop file.
+- Remove EAS stubs, they stink.

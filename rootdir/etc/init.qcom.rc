@@ -1111,12 +1111,6 @@ service yep_diag /system/bin/yepdiag
     class core
     user root
 
-service ifaadaemon /system/bin/ifaa_daemon
-    class late_start
-    user system
-    group system
-    writepid /dev/cpuset/system-background/tasks
-
 service adsprpcd /system/bin/adsprpcd
    class main
    user media
