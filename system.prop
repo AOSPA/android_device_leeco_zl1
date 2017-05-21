@@ -203,3 +203,10 @@ drm.service.enabled=true
 
 # FlexMap
 persist.radio.flexmap_type=disabled
+
+# HW
+ro.le.mtpname=Le Pro3
+ro.cutoff_voltage_mv=3250
+ro.vendor.maxbrightness=255
+ro.product.customize=whole-netcom
+ro.config.le_hardware_version=HW_1.0.0

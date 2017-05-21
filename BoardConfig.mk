@@ -81,6 +81,9 @@ TARGET_KERNEL_SOURCE := kernel/leeco/msm8996
 TARGET_KERNEL_CONFIG := zl1_defconfig
 TARGET_KERNEL_APPEND_DTB := true
 
+# Wrapper
+BOARD_USES_LIBC_WRAPPER := true
+
 # THP
 TARGET_SUPPORTS_THP := false
 

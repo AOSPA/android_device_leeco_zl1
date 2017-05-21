@@ -137,6 +137,7 @@ void vendor_load_properties()
 
     if (isLEX720)
     {
+           // Set the main properties for the Chinese variant.
            property_set("persist.multisim.config", "dsds");
            property_set("persist.radio.multisim.config", "dsds");
            property_set("ro.telephony.default_network", "22,22");
@@ -144,6 +145,7 @@ void vendor_load_properties()
            property_set("ro.build.fingerprint", "LeEco/ZL1_CN/le_zl1:6.0.1/WAXCNFN5902303282S/letv03281232:user/release-keys");
            property_set("ro.build.description", "le_zl1-user 6.0.1 WAXCNFN5902303282S eng.letv.20170328.122958 release-keys");
         } else {
+           // Set the main properties for the American variant.
            property_set("persist.multisim.config", "NA");
            property_set("persist.radio.multisim.config", "NA");
            property_set("ro.telephony.default_network", "9");
@@ -151,8 +153,10 @@ void vendor_load_properties()
            property_set("ro.build.fingerprint", "LeEco/ZL1_NA/le_zl1:6.0.1/WEXNAOP5802101261S/letv01261206:user/release-keys");
            property_set("ro.build.description", "le_zl1-user 6.0.1 WEXNAOP5802101261S eng.letv.20170126.120318 release-keys");
     }
-    //property_set("ro.config.product", "le_zl1");
-    //property_set("ro.build.product", "le_zl1");
-    //property_set("ro.product.device", "le_zl1");
+    // Set the expected 'le_zl1' properties used in our blobs.
+    property_set("ro.config.product", "le_zl1");
+    property_set("ro.build.product", "le_zl1");
+    property_set("ro.product.device", "le_zl1");
+    // Set the boot properties from Kernel boot_reason.
     init_alarm_boot_properties();
 }
