@@ -117,7 +117,8 @@ PRODUCT_COPY_FILES += \
 # Fluence
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
-    persist.audio.fluence.voicerec=true
+    persist.audio.fluence.voicerec=true \
+    persist.audio.fluence.speaker=false
 
 include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
 

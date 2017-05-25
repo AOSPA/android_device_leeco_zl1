@@ -2023,7 +2023,25 @@
         <ctl name="Amp Volume Location" value="0" />
         -->
         <ctl name="Speaker Volume" value="5" />
-        <ctl name="Digital Gain" value="56" />
+        <ctl name="Digital Gain" value="55" />
+        <ctl name="Left Channel Enable" value="1" />
+        <ctl name="Right Channel Enable" value="1" />
+    </path>
+
+    <path name="speaker-amplified">
+        <!--<ctl name="Left Monomix Output" value="ch_0" />-->
+        <!--<ctl name="Right Monomix Output" value="ch_1" />-->
+        <ctl name="Boost Output Voltage" value="9V" />
+        <ctl name="Left Feedback Enable" value="ON" />
+        <ctl name="Right Feedback Enable" value="ON" />
+        <!--
+        <ctl name="DRE EN" value="1" />
+        <ctl name="Ramp Switch" value="0" />
+        <ctl name="Amp DSP Enable" value="1" />
+        <ctl name="Amp Volume Location" value="0" />
+        -->
+        <ctl name="Speaker Volume" value="6" />
+        <ctl name="Digital Gain" value="66" />
         <ctl name="Left Channel Enable" value="1" />
         <ctl name="Right Channel Enable" value="1" />
     </path>
@@ -2176,7 +2194,7 @@
         <ctl name="AIF4_VI Mixer SPKR_VI_1" value="1" />
         <ctl name="AIF4_VI Mixer SPKR_VI_2" value="1" />
         <ctl name="SLIM_4_TX Format" value="PACKED_16B" />
-        <path name="speaker" />
+        <path name="speaker-amplified" />
         <ctl name="VI_FEED_TX Channels" value="Two" />
         <ctl name="SLIM0_RX_VI_FB_LCH_MUX"  value="SLIM4_TX" />
         <ctl name="SLIM0_RX_VI_FB_RCH_MUX"  value="SLIM4_TX" />
