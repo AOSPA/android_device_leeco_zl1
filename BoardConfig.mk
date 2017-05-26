@@ -66,8 +66,8 @@ QCOM_BT_USE_SMD_TTY := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
-# Performance (#TODO)
-ENABLE_CPUSETS := true
+# Performance
+ENABLE_CPUSETS := false
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff
@@ -78,7 +78,7 @@ BOARD_TAGS_OFFSET := 0x00000100
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/leeco/msm8996
-TARGET_KERNEL_CONFIG := zl1_defconfig
+TARGET_KERNEL_CONFIG := paranoid_defconfig
 TARGET_KERNEL_APPEND_DTB := true
 
 # Wrapper

@@ -106,11 +106,6 @@ PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
 # Characteristics
 PRODUCT_CHARACTERISTICS := nosdcard
 
-# ADB
-ifeq ($(filter-out false,$(USE_ADBSEC)),)
-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
-endif
-
 # Display
 PRODUCT_PACKAGES += \
     copybit.msm8996 \
@@ -206,10 +201,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
-
-# MTP
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
 
 # NFC
 PRODUCT_PACKAGES += \
