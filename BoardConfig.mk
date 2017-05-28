@@ -151,11 +151,8 @@ WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_zl1
-#TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_RECOVERY_DEVICE_MODULES := libinit_zl1
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
-#TARGET_LIBINIT_DEFINES_FILE := device/leeco/zl1/init/init_zl1.cpp
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_LIBINIT_DEFINES_FILE := device/leeco/zl1/init/init_zl1.cpp
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
