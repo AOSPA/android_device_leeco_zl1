@@ -12,3 +12,5 @@
 - Remove EAS stubs, they stink.
 - Set 'persist.audio.fluence.voicerec=true'. (DONE)
 - Separate 'packages' and 'blobs' in zl1-vendor.mk for faster updates and easier scripting.
+- Remote 'battd' binary as it's only useful for logging.
+- Redo 'rootdir' and remove anything not needed, HUGE!
