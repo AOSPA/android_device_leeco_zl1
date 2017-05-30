@@ -14,3 +14,4 @@
 - Separate 'packages' and 'blobs' in zl1-vendor.mk for faster updates and easier scripting.
 - Remote 'battd' binary as it's only useful for logging.
 - Redo 'rootdir' and remove anything not needed, HUGE!
+- Redo usb to support the latest configfs hottes.

@@ -81,18 +81,18 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.qcom \
+    init.qcom.early_boot.sh \
     init.qcom.bt.sh \
-    init.qcom.power.rc \
-    qfp_boot.sh \
     init.qcom.rc \
-    init.letv.rc \
-    init.letv.usb.rc \
     init.qcom.sh \
+    init.letv.usb.rc \
     init.qcom.usb.sh \
     init.qcom.sensors.sh \
     init.target.rc \
-    ueventd.qcom.rc
+    init.qcom.debug.sh \
+    fstab.qcom \
+    ueventd.qcom.rc \
+    init.qcom.post_boot.sh
 
 # Prebuilt
 PRODUCT_COPY_FILES += \
@@ -241,6 +241,11 @@ PRODUCT_PACKAGES += \
     ipacm \
     ipacm-diag \
     IPACM_cfg.xml
+
+# FST Manager
+PRODUCT_PACKAGES += \
+    fstman \
+    fstman.ini
 
 # WPA
 PRODUCT_PACKAGES += \
