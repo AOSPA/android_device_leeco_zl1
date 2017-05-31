@@ -89,7 +89,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.qcom.sensors.sh \
     init.target.rc \
-    init.qcom.debug.sh \
     fstab.qcom \
     ueventd.qcom.rc \
     init.qcom.post_boot.sh

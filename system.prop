@@ -174,9 +174,6 @@ ro.vendor.gt_library=libqti-gt.so
 ro.vendor.at_library=libqti-at.so
 sys.games.gt.prof=1
 
-# CoreSight STM
-ro.dbg.coresight.config=stm_events
-
 # Fingerprint
 persist.qfp=false
 
