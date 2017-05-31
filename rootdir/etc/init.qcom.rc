@@ -751,23 +751,6 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     group root
     disabled
 
-# Coresight
-service cs-early-boot /system/bin/sh /persist/coresight/qdss.agent.sh early-boot /system/etc/init.qcom.debug.sh
-    class core
-    user root
-    oneshot
-
-service cs-post-boot /system/bin/sh /persist/coresight/qdss.agent.sh
-    user root
-    disabled
-    oneshot
-
-on property:sys.dbg.coresight.enable=1
-    write /persist/coresight/enable 1
-
-on property:sys.dbg.coresight.enable=0
-    write /persist/coresight/enable 0
-
 # QSEE Proxy
 service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
     class late_start
@@ -786,5 +769,4 @@ service yep_diag /system/bin/yepdiag
 # Post-boot
 on property:sys.boot_completed=1
     start qcom-post-boot
-    start cs-post-boot
     chown media audio /sys/kernel/wcd_cpe0/fw_name
