@@ -93,10 +93,6 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
     init.qcom.post_boot.sh
 
-# Prebuilt
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/leeco/zl1/prebuilt/system,system)
-
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 420dpi
@@ -139,7 +135,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_output_policy.conf:system/etc/audio_output_policy.conf \
     $(LOCAL_PATH)/audio/mixer_paths_tasha.xml:system/etc/mixer_paths_tasha.xml \
-    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml
+    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    $(LOCAL_PATH)/audio/surround_sound_3mic/surround_sound_rec_AZ.cfg:system/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
 
 # AV Enhancements
 PRODUCT_PACKAGES += \
@@ -179,6 +176,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sec_config:system/etc/sec_config
 
+# SPN
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/spn-conf.xml:system/etc/spn-conf.xml
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl
@@ -212,6 +213,10 @@ PRODUCT_PACKAGES += \
     nqnfcse_access.xml \
     Tag
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+    $(LOCAL_PATH)/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
+
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -228,6 +233,7 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
+    rmnetcli \
     libxml2 \
     libprotobuf-cpp-full
 
@@ -240,6 +246,10 @@ PRODUCT_PACKAGES += \
     ipacm \
     ipacm-diag \
     IPACM_cfg.xml
+
+# IR
+PRODUCT_PACKAGES += \
+    consumerir.default
 
 # FST Manager
 PRODUCT_PACKAGES += \
@@ -263,6 +273,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8996
 
+# QMI
+PRODUCT_PACKAGES += \
+    libjson
+
 # ANT+ stack
 PRODUCT_PACKAGES += \
     AntHalService \
@@ -270,34 +284,19 @@ PRODUCT_PACKAGES += \
     antradio_app \
     libvolumelistener
 
-# For android_filesystem_config.h
+# Filesystem
 PRODUCT_PACKAGES += \
     fs_config_files \
     fs_config_dirs
+
+# TCM
+PRODUCT_PACKAGES += \
+    tcmiface
 
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.msm8996
 
-#Radio
-PRODUCT_PACKAGES += \
-    radio.primary.msm8996
-
-#IR
-PRODUCT_PACKAGES += \
-    consumerir.default
-
-#Radio
-#PRODUCT_PACKAGES += \
-    FMRadio \
-    qcom.fmradio \
-    qcom.fmradio.xml \
-    libqcomfm_jni.so
-
-# QCom
-PRODUCT_PACKAGES += \
-    libjson \
-    tcmiface
-
-PRODUCT_PACKAGES += \
-    libcommon_time_client
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/sensors/hals.conf:system/etc/sensors/hals.conf \
+    $(LOCAL_PATH)/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
