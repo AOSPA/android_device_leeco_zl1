@@ -85,7 +85,8 @@ PRODUCT_PACKAGES += \
     init.qcom.bt.sh \
     init.qcom.rc \
     init.qcom.sh \
-    init.letv.usb.rc \
+    init.qcom.usb.rc \
+    init.msm.usb.configfs.rc \
     init.qcom.usb.sh \
     init.qcom.sensors.sh \
     init.target.rc \

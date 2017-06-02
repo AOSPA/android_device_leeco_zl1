@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2012, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -30,8 +30,6 @@
 chown -h root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
 chmod -h 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
 
-target=`getprop ro.board.platform`
-
 # Set platform variables
 if [ -f /sys/devices/soc0/hw_platform ]; then
     soc_hwplatform=`cat /sys/devices/soc0/hw_platform` 2> /dev/null
@@ -50,6 +48,7 @@ fi
 # Allow persistent usb charging disabling
 # User needs to set usb charging disabled in persist.usb.chgdisabled
 #
+target=`getprop ro.board.platform`
 usbchgdisabled=`getprop persist.usb.chgdisabled`
 case "$usbchgdisabled" in
     "") ;; #Do nothing here
@@ -92,28 +91,108 @@ for f in /sys/bus/esoc/devices/*; do
 done
 fi
 
+target=`getprop ro.board.platform`
+
+# soc_ids for 8937
+if [ -f /sys/devices/soc0/soc_id ]; then
+	soc_id=`cat /sys/devices/soc0/soc_id`
+else
+	soc_id=`cat /sys/devices/system/soc/soc0/id`
+fi
+
 #
-# Set default USB config
+# Allow USB enumeration with default PID/VID
 #
-boot_mode=`getprop ro.boot.ftm_mode`
-echo "boot_mode: $boot_mode" > /dev/kmsg
-case "$boot_mode" in
-    "ftm_at" | "ftm_rf" | "ftm_wlan" | "ftm_mos")
-    usb_config=`getprop persist.sys.usb.config`
-    echo "BEFORE boot_mode: $usb_config" > /dev/kmsg
-    if [ "$usb_config" != "diag,adb" ] ; then
-        setprop persist.sys.usb.config diag,adb
-    fi
-    ;;
-esac
+baseband=`getprop ro.baseband`
+
+echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
 usb_config=`getprop persist.sys.usb.config`
-echo "AFTER boot_mode: $usb_config" > /dev/kmsg
+case "$usb_config" in
+    "" | "adb") #USB persist config not set, select default configuration
+      case "$esoc_link" in
+          "PCIe")
+              setprop persist.sys.usb.config diag,diag_mdm,serial_cdev,rmnet_qti_ether,mass_storage,adb
+          ;;
+          *)
+	  case "$baseband" in
+	      "apq")
+	          setprop persist.sys.usb.config diag,adb
+	      ;;
+	      *)
+	      case "$soc_hwplatform" in
+	          "Dragon" | "SBC")
+	              setprop persist.sys.usb.config diag,adb
+	          ;;
+                  *)
+	          case "$target" in
+                      "msm8916")
+		          setprop persist.sys.usb.config diag,serial_smd,rmnet_bam,adb
+		      ;;
+	              "msm8994" | "msm8992")
+	                  setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_ipa,mass_storage,adb
+		      ;;
+	              "msm8996")
+	                  setprop persist.sys.usb.config diag,serial_cdev,serial_tty,rmnet_ipa,mass_storage,adb
+		      ;;
+	              "msm8909")
+		          setprop persist.sys.usb.config diag,serial_smd,rmnet_qti_bam,adb
+		      ;;
+	              "msm8937")
+			    case "$soc_id" in
+				    "313" | "320")
+				       setprop persist.sys.usb.config diag,serial_smd,rmnet_ipa,adb
+				    ;;
+				    *)
+				       setprop persist.sys.usb.config diag,serial_smd,rmnet_qti_bam,adb
+				    ;;
+			    esac
+		      ;;
+	              "msm8952" | "msm8953")
+		          setprop persist.sys.usb.config diag,serial_smd,rmnet_ipa,adb
+		      ;;
+	              "msm8998")
+		          setprop persist.sys.usb.config diag,serial_cdev,rmnet_gsi,adb
+		      ;;
+	              *)
+		          setprop persist.sys.usb.config diag,adb
+		      ;;
+                  esac
+	          ;;
+	      esac
+	      ;;
+	  esac
+	  ;;
+      esac
+      ;;
+  * ) ;; #USB persist config exists, do nothing
+esac
+
+# set USB controller's device node
+case "$target" in
+    "msm8996")
+        setprop sys.usb.controller "6a00000.dwc3"
+        setprop sys.usb.rndis.func.name "rndis_bam"
+	;;
+    "msm8998")
+        setprop sys.usb.controller "a800000.dwc3"
+        setprop sys.usb.rndis.func.name "gsi"
+	;;
+    "msmfalcon")
+        setprop sys.usb.controller "a800000.dwc3"
+        setprop sys.usb.rndis.func.name "rndis_bam"
+        ;;
+    *)
+	;;
+esac
+
+# check configfs is mounted or not
+if [ -d /config/usb_gadget ]; then
+	setprop sys.usb.configfs 1
+fi
 
 #
 # Do target specific things
 #
-baseband=`getprop ro.baseband`
-
 case "$target" in
     "msm8974")
 # Select USB BAM - 2.0 or 3.0
@@ -131,11 +210,18 @@ case "$target" in
              fi
          fi
     ;;
-    "msm8994" | "msm8992" | "msm8996" | "titanium")
+    "msm8994" | "msm8992" | "msm8996" | "msm8953")
         echo BAM2BAM_IPA > /sys/class/android_usb/android0/f_rndis_qc/rndis_transports
         echo 131072 > /sys/module/g_android/parameters/mtp_tx_req_len
         echo 131072 > /sys/module/g_android/parameters/mtp_rx_req_len
     ;;
+    "msm8937")
+	case "$soc_id" in
+		"313" | "320")
+		   echo BAM2BAM_IPA > /sys/class/android_usb/android0/f_rndis_qc/rndis_transports
+		;;
+	esac
+   ;;
 esac
 
 #
@@ -217,6 +303,6 @@ fi
 setprop sys.usb.rps_mask 0
 case "$soc_id" in
 	"294" | "295")
-		setprop sys.usb.rps_mask 10
+		setprop sys.usb.rps_mask 40
 	;;
 esac
