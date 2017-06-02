@@ -194,7 +194,8 @@ PRODUCT_COPY_FILES += \
 
 # Libshims
 PRODUCT_PACKAGES += \
-    libshims_ims
+    libshims_ims \
+    libwvm_shim
 
 # Lights
 PRODUCT_PACKAGES += \
