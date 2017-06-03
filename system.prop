@@ -2,6 +2,10 @@
 # system.prop for Le Pro3 (zl1)
 #
 
+# Product
+ro.config.product=le_zl1
+ro.product.customize=oversea
+
 # Radio/RIL
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 persist.rild.nitz_plmn=
@@ -143,7 +147,6 @@ sdm.perf_hint_window=50
 
 # NFC
 ro.nfc.port=I2C
-#persist.nfc.smartcard.config=SIM1,SIM2,eSE1
 
 # HWUI
 ro.hwui.texture_cache_size=96
@@ -177,6 +180,9 @@ sys.games.gt.prof=1
 # Fingerprint
 persist.qfp=false
 
+# Battery
+ro.cutoff_voltage_mv=3250
+
 # Service Locator
 persist.sys.pd_enable=0
 
@@ -207,10 +213,3 @@ drm.service.enabled=true
 
 # FlexMap
 persist.radio.flexmap_type=disabled
-
-# HW
-ro.le.mtpname=Le Pro3
-ro.cutoff_voltage_mv=3250
-ro.vendor.maxbrightness=255
-ro.product.customize=whole-netcom
-ro.config.le_hardware_version=HW_1.0.0

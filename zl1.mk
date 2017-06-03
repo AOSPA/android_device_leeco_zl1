@@ -149,6 +149,9 @@ PRODUCT_PACKAGES += \
     qcmediaplayer \
     libextmedia_jni
 
+# SmartcardService
+ADDITIONAL_BUILD_PROPERTIES += persist.nfc.smartcard.config=SIM1,SIM2,eSE1
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd
@@ -260,13 +263,21 @@ PRODUCT_PACKAGES += \
     fstman \
     fstman.ini
 
-# WPA
+# Wi-Fi
 PRODUCT_PACKAGES += \
-    libwpa_client \
     hostapd \
+    libwpa_client \
     wpa_supplicant \
-    wpa_supplicant.conf \
-    hs20-osu-client
+    wpa_supplicant.conf
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    $(LOCAL_PATH)/wifi/hostapd.conf:system/etc/hostapd/hostapd_default.conf \
+    $(LOCAL_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \
+    $(LOCAL_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny
 
 # Camera
 PRODUCT_PACKAGES += \

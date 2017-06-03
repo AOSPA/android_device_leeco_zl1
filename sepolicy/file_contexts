@@ -23,7 +23,6 @@
 
 /sys/devices/virtual/timed_output/vibrator(/.*)?                u:object_r:sysfs_vibrator:s0
 
-
 /dev/smartpa_f0_detect                                          u:object_r:smartpa_f0_detect_device:s0
 /dev/i2c-6                                                      u:object_r:smartamp_device:s0
 /dev/i2c-*                                                      u:object_r:smartamp_device:s0

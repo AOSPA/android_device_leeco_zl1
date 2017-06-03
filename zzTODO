@@ -16,3 +16,26 @@
 - Redo 'rootdir' and remove anything not needed, HUGE!
 - Redo usb to support the latest configfs hottes.
 - Investigate "org.simalliance.openmobileapi.xml" and SmartCardService NFC products.
+
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/framework/com.qti.dpmframework.jar'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/framework/com.qti.dpmframework.jar'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/framework/com.qti.location.sdk.jar'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/framework/com.qti.location.sdk.jar'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/framework/dpmapi.jar'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/framework/dpmapi.jar'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/framework/tcmclient.jar'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/framework/tcmclient.jar'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/lib64/hw/hdmi_cec.msm8996.so'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/lib64/hw/hdmi_cec.msm8996.so'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/lib/hw/hdmi_cec.msm8996.so'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/lib/hw/hdmi_cec.msm8996.so'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/lib/libmm-omxcore.so'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/lib/libmm-omxcore.so'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/lib64/libmm-omxcore.so'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/lib64/libmm-omxcore.so'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/vendor/lib64/mediadrm/libdrmclearkeyplugin.so'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/vendor/lib64/mediadrm/libdrmclearkeyplugin.so'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/etc/libnfc-brcm.conf'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/etc/libnfc-brcm.conf'
+build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/etc/libnfc-nxp.conf'
+build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/etc/libnfc-nxp.conf'

@@ -18,6 +18,9 @@
     <!-- Enable HAL3 by default -->
     <bool name="config_use_hal3">true</bool>
 
+    <!-- Enable support for camera api v2 -->
+    <bool name="support_camera_api_v2">true</bool>
+
     <!-- Restart preview for back camera onPictureTaken -->
     <bool name="back_camera_restart_preview_onPictureTaken">true</bool>
 
