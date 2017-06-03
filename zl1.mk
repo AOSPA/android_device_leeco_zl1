@@ -111,6 +111,9 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libtinyxml
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/FOSSConfig.xml:system/etc/FOSSConfig.xml
+
 # Fluence
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
