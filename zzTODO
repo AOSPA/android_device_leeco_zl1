@@ -17,6 +17,12 @@
 - Redo usb to support the latest configfs hottes.
 - Investigate "org.simalliance.openmobileapi.xml" and SmartCardService NFC products.
 
+Add:
+proprietary/etc/permissions/GBAHttpAuthentication.xml
+proprietary/etc/permissions/com.quicinc.wbc.xml
+proprietary/etc/permissions/com.quicinc.wbcservice.xml
+
+Research:
 build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/framework/com.qti.dpmframework.jar'
 build/core/base_rules.mk:320: warning: ignoring old commands for target `out/target/product/zl1/system/framework/com.qti.dpmframework.jar'
 build/core/Makefile:34: warning: overriding commands for target `out/target/product/zl1/system/framework/com.qti.location.sdk.jar'
