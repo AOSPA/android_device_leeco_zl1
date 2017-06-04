@@ -279,7 +279,7 @@
 
     <!-- The duration (in milliseconds) that the radio will scan for a signal
          when there's no network connection. If the scan doesn't timeout, use zero -->
-    <integer name="config_radioScanningTimeout">200</integer>
+    <integer name="config_radioScanningTimeout">5000</integer>
 
     <!-- Control the behavior when the user long presses the home button.
         0 - Nothing
