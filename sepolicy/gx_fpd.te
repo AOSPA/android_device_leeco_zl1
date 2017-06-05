@@ -22,22 +22,21 @@ allow gx_fpd gx_fpd_device:file { create_file_perms };
 allow gx_fpd gx_fpd_device:chr_file { rw_file_perms setattr };
 allow gx_fpd gx_fpd_device:chr_file { getattr open read ioctl lock append write };
 
+r_dir_file(gx_fpd, fingerprintd_data_file)
 allow gx_fpd fingerprintd_data_file:file { create_file_perms };
 allow gx_fpd fingerprintd_data_file:chr_file { rw_file_perms setattr };
-r_dir_file(gx_fpd, fingerprintd_data_file)
 allow gx_fpd fingerprintd_data_file:dir ra_dir_perms;
 allow gx_fpd fingerprintd_data_file:dir { create setattr };
 
+r_dir_file(gx_fpd, gx_fpd_data_file)
 allow gx_fpd gx_fpd_data_file:file { create_file_perms };
 allow gx_fpd gx_fpd_data_file:chr_file { rw_file_perms setattr };
-r_dir_file(gx_fpd, gx_fpd_data_file)
 allow gx_fpd gx_fpd_data_file:dir ra_dir_perms;
 allow gx_fpd gx_fpd_data_file:dir { create setattr };
 
 allow gx_fpd gx_fpd_lib_file:file { create_file_perms getattr read };
 allow gx_fpd gx_fpd_lib_file:chr_file { rw_file_perms setattr };
 allow gx_fpd gx_fpd_lib_file:dir ra_dir_perms;
-
 allow gx_fpd gx_fp_lib_file:file { create_file_perms getattr read };
 allow gx_fpd gx_fp_lib_file:chr_file { rw_file_perms setattr };
 
@@ -49,21 +48,14 @@ allow gx_fpd keystore:keystore_key { add_auth };
 binder_call(gx_fpd, system_server);
 allow gx_fpd permission_service:service_manager find;
 
-allow gx_fpd fuse:dir create_dir_perms;
-allow gx_fpd fuse:file create_file_perms;
 r_dir_file(gx_fpd, sdcard_type)
 allow gx_fpd sdcard_type:file write;
+allow gx_fpd fuse:dir create_dir_perms;
+allow gx_fpd fuse:file create_file_perms;
 allow gx_fpd app_data_file:dir search;
 allow gx_fpd app_data_file:file rw_file_perms;
-#allow gx_fpd system_data_file:dir create_dir_perms;
-#allow gx_fpd system_data_file:file create_file_perms;
-#allow gx_fpd apk_data_file:dir create_dir_perms;
-#allow gx_fpd apk_data_file:file {create_file_perms execute}; 
 
 allow gx_fpd firmware_file:file { getattr open read };
 allow gx_fpd ion_device:chr_file { ioctl open read };
 allow gx_fpd rootfs:lnk_file getattr;
 allow gx_fpd firmware_file:dir { search open read };
-
-allow gx_fpd eas_sched:dir { r_dir_perms };
-allow gx_fpd eas_sched:file { rw_file_perms };

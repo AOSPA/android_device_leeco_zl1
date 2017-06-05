@@ -1,5 +1,4 @@
 allow priv_app device:dir { open read };
-
 allow priv_app audio_data_file:dir { r_dir_perms };
 allow priv_app block_device:dir { r_dir_perms };
 allow priv_app bluetooth_data_file:dir { r_dir_perms };

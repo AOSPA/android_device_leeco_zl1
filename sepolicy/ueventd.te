@@ -1,3 +1,2 @@
 allow ueventd vfat:file { read open };
-
 allow ueventd sysfs_vibrator:file { write open };
