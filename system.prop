@@ -2,10 +2,6 @@
 # system.prop for Le Pro3 (zl1)
 #
 
-# Product
-ro.config.product=le_zl1
-ro.product.customize=oversea
-
 # Radio/RIL
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 persist.rild.nitz_plmn=
