@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017 - The Paranoid Android Project
+ * Copyright (c) 2017 Paranoid Android
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
@@ -52,21 +52,20 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.telephony.default_network", "22,22");
         property_set("ro.product.model", "LEX720");
     } else {
-        // Set the main properties for the American variant.
+        // Set the main properties for the USA variant.
         property_set("persist.multisim.config", "NA");
         property_set("persist.radio.multisim.config", "NA");
         property_set("ro.telephony.default_network", "9");
         property_set("ro.product.model", "LEX727");
     }
 
-    // Set the certified firgerprint from US variant.
-    //property_set("ro.product.name", "ZL1_NA");
-    //property_set("ro.product.customize", "oversea");
-    //property_set("ro.build.id", "WEXNAOP5802012101S");
-    //property_set("ro.build.fingerprint", "LeEco/ZL1_NA/le_zl1:6.0.1/WEXNAOP5802012101S/letv12100148:user/release-keys");
-    //property_set("ro.build.description", "le_zl1-user 6.0.1 WEXNAOP5802012101S eng.letv.20161210.014420 release-keys");
+    // Set the expected USA device properties.
+    property_set("ro.product.name", "ZL1_NA");
+    property_set("ro.product.customize", "oversea");
+    property_set("ro.com.google.clientidbase", "android-letv");
 
     // Set the expected 'le_zl1' properties used in our blobs.
     property_set("ro.build.product", "le_zl1");
+    property_set("ro.config.product", "le_zl1");
     property_set("ro.product.device", "le_zl1");
 }
