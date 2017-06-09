@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c36885d_81f7ca10",
+        "filename": "system.prop",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2017-06-09T18:26:15Z",
+      "side": 0,
+      "message": "@alex? Is this property of any use?",
+      "revId": "64c4bcbdfde326b454537752dfde7854826d4e69",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": false
+    }
+  ]
+}
