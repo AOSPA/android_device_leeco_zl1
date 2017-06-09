@@ -123,6 +123,10 @@ AUDIO_FEATURE_ENABLED_EXTN_RESAMPLER := true
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 TARGET_HAS_LEGACY_HSR := true
 
+# GPS
+TARGET_NO_RPC := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8996
+
 # Pre-optimization
 ifneq ($(filter-out false,$(USE_DEXPREOPT)),)
   # Enable dex-preoptimization.
