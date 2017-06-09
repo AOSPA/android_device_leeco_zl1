@@ -16,6 +16,24 @@
       "revId": "64c4bcbdfde326b454537752dfde7854826d4e69",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b2631c2_0d977e49",
+        "filename": "system.prop",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2017-06-09T19:51:19Z",
+      "side": 0,
+      "message": "Interesting point, BSP sets it and gives recommendations on when each value is to be used. I\u0027ll check whether the prop is actually read anywhere.",
+      "parentUuid": "6c36885d_81f7ca10",
+      "revId": "64c4bcbdfde326b454537752dfde7854826d4e69",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": false
     }
   ]
 }
