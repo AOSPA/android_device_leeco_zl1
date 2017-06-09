@@ -259,6 +259,10 @@ PRODUCT_PACKAGES += \
     libxml2 \
     libprotobuf-cpp-full
 
+PRODUCT_BOOT_JARS += \
+    qcnvitems \
+    qcrilhook
+
 # Telephony
 PRODUCT_BOOT_JARS += qti-telephony-common
 
