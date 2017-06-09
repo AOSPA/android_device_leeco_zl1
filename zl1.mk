@@ -247,6 +247,10 @@ PRODUCT_PACKAGES += \
     libstagefright_soft_flacenc
 
 # RIL
+PRODUCT_BOOT_JARS += \
+    qcnvitems \
+    qcrilhook
+
 PRODUCT_PACKAGES += \
     librmnetctl \
     rmnetcli \
