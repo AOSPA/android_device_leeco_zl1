@@ -34,6 +34,24 @@
       "revId": "64c4bcbdfde326b454537752dfde7854826d4e69",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aebb37e1_92a1a555",
+        "filename": "system.prop",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2017-06-10T17:45:11Z",
+      "side": 0,
+      "message": "Yes this is used by GMS",
+      "parentUuid": "1b2631c2_0d977e49",
+      "revId": "64c4bcbdfde326b454537752dfde7854826d4e69",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": false
     }
   ]
 }
