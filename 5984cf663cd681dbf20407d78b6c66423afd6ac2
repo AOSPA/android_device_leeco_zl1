@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c668d11d_8cff395f",
+        "filename": "system.prop",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2017-06-11T17:19:28Z",
+      "side": 1,
+      "message": "Why 11?",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "5984cf663cd681dbf20407d78b6c66423afd6ac2",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": false
+    }
+  ]
+}
