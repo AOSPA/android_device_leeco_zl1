@@ -323,10 +323,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.msm8996
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sensors/hals.conf:system/etc/sensors/hals.conf \
-    $(LOCAL_PATH)/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
-
 # Tools
 PRODUCT_PACKAGES += \
     libjson \
