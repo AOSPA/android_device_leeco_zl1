@@ -19,17 +19,16 @@
 # product configuration (apps).
 #
 
+# Proprietary
 $(call inherit-product, vendor/leeco/zl1/zl1-vendor.mk)
 
+# Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Charger
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images
-
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -106,26 +105,37 @@ PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_PACKAGES += \
     copybit.msm8996 \
     gralloc.msm8996 \
+    hdmi_cec.msm8996 \
     hwcomposer.msm8996 \
     memtrack.msm8996 \
     liboverlay \
     libtinyxml
 
+# FOSS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/FOSSConfig.xml:system/etc/FOSSConfig.xml
-
-# Fluence
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qc.sdk.audio.fluencetype=fluence \
-    persist.audio.fluence.voicerec=true \
-    persist.audio.fluence.speaker=false
-
-include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
 
 # EGL
 PRODUCT_PACKAGES += libGLES_android
 
 # Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.audio.fluencetype=fluence \
+    persist.audio.fluence.voicerec=true \
+    persist.audio.fluence.speaker=false \
+    audio.offload.pcm.16bit.enable=true \
+    audio.offload.pcm.24bit.enable=true \
+    audio.offload.track.enable=true \
+    audio.offload.multiaac.enable=true \
+    audio.offload.multiple.enabled=true \
+    audio.offload.passthrough=false \
+    qcom.hw.aac.encoder=true \
+    use.qti.sw.alac.decoder=true \
+    use.qti.sw.ape.decoder=true \
+    flac.sw.decoder.24bit.support=true
+
+include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
+
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
@@ -143,12 +153,42 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/surround_sound_3mic/surround_sound_rec_AZ.cfg:system/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
 
+# Media
+PRODUCT_PACKAGES += \
+    libdivxdrmdecrypt \
+    libOmxVidcCommon \
+    libstagefright_soft_flacenc
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+
 # AV Enhancements
 PRODUCT_PACKAGES += \
     libdashplayer \
     libqcmediaplayer \
     qcmediaplayer \
     libextmedia_jni
+
+# OMX
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libextmedia_jni \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxCore \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libOmxVdec \
+    libOmxVenc \
+    libmm-omxcore \
+    libstagefrighthw
 
 # SmartcardService
 ADDITIONAL_BUILD_PROPERTIES += persist.nfc.smartcard.config=SIM1,SIM2,eSE1
@@ -200,17 +240,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.qcom
 
-# Media
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-    $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
-
-PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
-
 # NFC
 PRODUCT_PACKAGES += \
     com.android.nfc_extras \
@@ -224,19 +253,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     $(LOCAL_PATH)/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
-
-# OMX
-PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
-    libextmedia_jni \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxCore \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
-    libOmxVdec \
-    libOmxVenc \
-    libstagefrighthw
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -289,10 +305,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8996
 
-# QMI
-PRODUCT_PACKAGES += \
-    libjson
-
 # ANT+ stack
 PRODUCT_PACKAGES += \
     AntHalService \
@@ -316,3 +328,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/hals.conf:system/etc/sensors/hals.conf \
     $(LOCAL_PATH)/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
+
+# Tools
+PRODUCT_PACKAGES += \
+    libjson \
+    libtinyxml2
