@@ -19,17 +19,16 @@
 # product configuration (apps).
 #
 
+# Proprietary
 $(call inherit-product, vendor/leeco/zl1/zl1-vendor.mk)
 
+# Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Charger
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images
-
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -106,26 +105,34 @@ PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_PACKAGES += \
     copybit.msm8996 \
     gralloc.msm8996 \
+    hdmi_cec.msm8996 \
     hwcomposer.msm8996 \
     memtrack.msm8996 \
     liboverlay \
     libtinyxml
 
+# FOSS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/FOSSConfig.xml:system/etc/FOSSConfig.xml
-
-# Fluence
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qc.sdk.audio.fluencetype=fluence \
-    persist.audio.fluence.voicerec=true \
-    persist.audio.fluence.speaker=false
-
-include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
 
 # EGL
 PRODUCT_PACKAGES += libGLES_android
 
 # Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.audio.fluencetype=fluence \
+    persist.audio.fluence.voicerec=true \
+    persist.audio.fluence.speaker=false \
+    audio.offload.pcm.16bit.enable=true \
+    audio.offload.pcm.24bit.enable=true \
+    audio.offload.track.enable=false \
+    audio.offload.multiaac.enable=true \
+    audio.offload.multiple.enabled=true \
+    audio.offload.passthrough=false \
+    qcom.hw.aac.encoder=true
+
+include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
+
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
@@ -225,8 +232,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     $(LOCAL_PATH)/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
 
-# OMX
+# Media
 PRODUCT_PACKAGES += \
+    libdivxdrmdecrypt \
     libc2dcolorconvert \
     libextmedia_jni \
     libOmxAacEnc \
@@ -236,6 +244,8 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
+    libOmxVidcCommon \
+    libmm-omxcore \
     libstagefrighthw
 
 # RIL
@@ -289,10 +299,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8996
 
-# QMI
-PRODUCT_PACKAGES += \
-    libjson
-
 # ANT+ stack
 PRODUCT_PACKAGES += \
     AntHalService \
@@ -316,3 +322,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/hals.conf:system/etc/sensors/hals.conf \
     $(LOCAL_PATH)/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
+
+# Tools
+PRODUCT_PACKAGES += \
+    libjson \
+    libtinyxml2
