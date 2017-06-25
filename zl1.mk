@@ -125,11 +125,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.speaker=false \
     audio.offload.pcm.16bit.enable=true \
     audio.offload.pcm.24bit.enable=true \
-    audio.offload.track.enable=false \
+    audio.offload.track.enable=true \
     audio.offload.multiaac.enable=true \
     audio.offload.multiple.enabled=true \
     audio.offload.passthrough=false \
     qcom.hw.aac.encoder=true \
+    use.qti.sw.alac.decoder=true \
+    use.qti.sw.ape.decoder=true \
     flac.sw.decoder.24bit.support=true
 
 include $(TOPDIR)hardware/qcom/audio/configs/msm8996/msm8996.mk
