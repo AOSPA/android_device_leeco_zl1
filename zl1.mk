@@ -111,10 +111,6 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libtinyxml
 
-# FOSS
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/FOSSConfig.xml:system/etc/FOSSConfig.xml
-
 # EGL
 PRODUCT_PACKAGES += libGLES_android
 
