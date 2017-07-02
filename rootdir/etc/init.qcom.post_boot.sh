@@ -130,6 +130,9 @@ echo "N" > /sys/module/printk/parameters/console_suspend
 # Set GPU default/idle power level to 7.
 echo 7 > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
 
+# Switch to power efficient workqueue.
+echo "Y" > /sys/module/workqueue/parameters/power_efficient
+
 # Set the optimal read-ahead value for all MMC blocks.
 for block_device in /sys/block/*
 do
