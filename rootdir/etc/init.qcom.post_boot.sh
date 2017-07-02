@@ -27,7 +27,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-# Message the kmsg device to indicate this script has run.
+# Message the kmsg device to indicate this script is running.
 echo "[Qcom] Running post-boot script..." | tee /dev/kmsg
 
 # Disable thermal and BCL hotplug.
