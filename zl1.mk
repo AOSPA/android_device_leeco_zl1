@@ -155,7 +155,8 @@ PRODUCT_PACKAGES += \
     libextmedia_jni
 
 # SmartcardService
-ADDITIONAL_BUILD_PROPERTIES += persist.nfc.smartcard.config=SIM1,SIM2,eSE1
+PRODUCT_BOOT_JARS += org.simalliance.openmobileapi
+ADDITIONAL_BUILD_PROPERTIES += persist.nfc.smartcard.config=SIM1,eSE1
 
 # Fingerprint
 PRODUCT_PACKAGES += \

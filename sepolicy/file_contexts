@@ -37,3 +37,5 @@
 
 /sys/remote/enable                                              u:object_r:sysfs_ir_enable:s0
 /dev/ttyHSL1                                                    u:object_r:consumer_ir_device:s0
+
+/data/data/org.simalliance.openmobileapi.service/files(/.*)?    u:object_r:dalvikcache_data_file:s0
