@@ -102,3 +102,13 @@ if [ -f /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies ]; then
     gpu_freq=`cat /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies` 2> /dev/null
     setprop ro.gpu.available_frequencies "$gpu_freq"
 fi
+
+# Write the number of requests to the main MMC blocks.
+echo "256" > /sys/block/sda/queue/nr_requests
+echo "256" > /sys/block/sde/queue/nr_requests
+
+# If encrypted, write the number of requests to the DM blocks as well.
+if [ "$(getprop ro.crypto.state)" = "encrypted" ]; then
+    echo "256" > /sys/block/dm-0/queue/nr_requests
+    echo "256" > /sys/block/dm-1/queue/nr_requests
+fi;
