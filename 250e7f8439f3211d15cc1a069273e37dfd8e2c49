@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74a2eb72_7ff9b417",
+        "filename": "rootdir/etc/init.qcom.early_boot.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2017-07-05T14:23:48Z",
+      "side": 1,
+      "message": "Did you verify that this doesn\u0027t result in a denial?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 55
+      },
+      "revId": "250e7f8439f3211d15cc1a069273e37dfd8e2c49",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": false
+    }
+  ]
+}
