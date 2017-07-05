@@ -48,11 +48,6 @@ on post-fs
 on early-boot
     setrlimit 8 67108864 67108864
 
-    write /sys/block/dm-0/queue/nr_requests 256
-    write /sys/block/dm-1/queue/nr_requests 256
-    write /sys/block/sda/queue/nr_requests 256
-    write /sys/block/sde/queue/nr_requests 256
-
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
     exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
