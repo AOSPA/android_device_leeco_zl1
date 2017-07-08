@@ -290,8 +290,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    SnapdragonCamera \
-    libcamera_shim
+    Camera2
 
 # Power
 PRODUCT_PACKAGES += \
