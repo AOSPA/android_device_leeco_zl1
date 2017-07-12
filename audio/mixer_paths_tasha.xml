@@ -2200,11 +2200,18 @@
     </path>
 
     <path name="speaker-stereo">
-        <path name="speaker" />
+        <ctl name="Boost Output Voltage" value="9V" />
+        <ctl name="Left Feedback Enable" value="ON" />
+        <ctl name="Right Feedback Enable" value="ON" />
+        <ctl name="Speaker Volume" value="5" />
+        <ctl name="Left Digital Gain" value="56" />
+        <ctl name="Right Digital Gain" value="56" />
+        <ctl name="Left Channel Enable" value="1" />
+        <ctl name="Right Channel Enable" value="1" />
     </path>
 
     <path name="speaker-liquid">
-        <path name="speaker" />
+        <path name="speaker-stereo" />
     </path>
 
     <path name="speaker-vbat">
@@ -2293,20 +2300,22 @@
 
     <path name="speaker-protected">
         <ctl name="AIF4_VI Mixer SPKR_VI_1" value="1" />
-        <!--ctl name="AIF4_VI Mixer SPKR_VI_2" value="1" /-->
+        <ctl name="AIF4_VI Mixer SPKR_VI_2" value="1" />
         <ctl name="SLIM_4_TX Format" value="PACKED_16B" />
-        <path name="speaker-mono" />
+        <path name="speaker-stereo" />
         <ctl name="VI_FEED_TX Channels" value="One" />
         <ctl name="SLIM0_RX_VI_FB_LCH_MUX"  value="SLIM4_TX" />
-        <!--ctl name="SLIM0_RX_VI_FB_RCH_MUX"  value="SLIM4_TX" /-->
+        <ctl name="SLIM0_RX_VI_FB_RCH_MUX"  value="SLIM4_TX" />
     </path>
 
     <path name="voice-speaker-protected">
         <ctl name="AIF4_VI Mixer SPKR_VI_1" value="1" />
+        <ctl name="AIF4_VI Mixer SPKR_VI_2" value="1" />
         <ctl name="SLIM_4_TX Format" value="PACKED_16B" />
-        <path name="speaker-mono" />
+        <path name="speaker-stereo" />
         <ctl name="VI_FEED_TX Channels" value="One" />
         <ctl name="SLIM0_RX_VI_FB_LCH_MUX"  value="SLIM4_TX" />
+        <ctl name="SLIM0_RX_VI_FB_RCH_MUX"  value="SLIM4_TX" />
     </path>
 
     <path name="vi-feedback">
@@ -2447,7 +2456,7 @@
     </path>
 
     <path name="voice-speaker">
-        <path name="speaker-mono" />
+        <path name="speaker-stereo" />
     </path>
 
     <path name="voice-speaker-stereo">
