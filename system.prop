@@ -187,6 +187,9 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 # DRM
 drm.service.enabled=true
 
+# Fast Dormancy
+persist.env.fastdorm.enabled=true
+
 # FlexMap
 persist.radio.flexmap_type=disabled
 
