@@ -82,7 +82,7 @@
     <device_names>
         <device name="SND_DEVICE_IN_HEADSET_MIC" alias="voice-headset-mic" />
         <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" alias="voice-speaker-dmic-ef" /> <!-- Dual Mic w/ Fluence -->
-        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" alias="speaker-protected" /> <!-- Stereo -->
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" alias="voice-speaker-stereo" /> <!-- Unprotected Stereo -->
     </device_names>
     <config_params>
         <param key="spkr_1_tz_name" value="wsatz.11"/>
