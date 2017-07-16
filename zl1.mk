@@ -117,6 +117,7 @@ PRODUCT_PACKAGES += libGLES_android
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
+    persist.audio.fluence.voicecall=true \
     persist.audio.fluence.voicerec=true \
     persist.audio.fluence.speaker=false \
     audio.offload.pcm.16bit.enable=true \
