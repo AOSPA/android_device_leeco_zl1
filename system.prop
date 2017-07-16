@@ -41,6 +41,9 @@ persist.radio.ROTATION_ENABLE=1
 # DPM
 persist.data.dpm.enable=true
 
+# RST
+persist.data.tcp_rst_drop=true
+
 # GPS
 persist.gps.qc_nlp_in_use=1
 persist.loc.nlp_name=com.qualcomm.location
