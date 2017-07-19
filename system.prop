@@ -59,7 +59,7 @@ ro.sf.lcd_density=420
 persist.hwc.enable_vds=1
 
 # Performance
-ro.sys.fw.bg_apps_limit=45
+ro.sys.fw.bg_apps_limit=36
 ro.vendor.extension_library=libqti-perfd-client.so
 
 # CNE
