@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4adfecbb_633e138c",
+        "filename": "overlay/packages/services/Telecomm/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2017-07-23T22:56:27Z",
+      "side": 0,
+      "message": "This exists in fwb and is \"false\" anyway.",
+      "revId": "b3f34484eecd03756e8e2deae5cd4c584a6f3bbf",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": false
+    }
+  ]
+}
