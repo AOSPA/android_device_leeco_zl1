@@ -128,17 +128,6 @@ TARGET_HAS_LEGACY_HSR := true
 TARGET_NO_RPC := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8996
 
-# Pre-optimization
-ifneq ($(filter-out false,$(USE_DEXPREOPT)),)
-  # Enable dex-preoptimization.
-  WITH_DEXPREOPT := true
-  # Disable "--compile-pic" flag.
-  WITH_DEXPREOPT_PIC := false
-else
-  # Disable dex-preoptimization.
-  WITH_DEXPREOPT := false
-endif
-
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_WLAN_DEVICE := qcwcn
