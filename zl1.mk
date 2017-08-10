@@ -294,10 +294,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \
     $(LOCAL_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny
 
-# Camera
-PRODUCT_PACKAGES += \
-    Camera2
-
 # Power
 PRODUCT_PACKAGES += \
     power.msm8996
