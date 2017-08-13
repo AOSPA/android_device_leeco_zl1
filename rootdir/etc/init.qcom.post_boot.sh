@@ -132,13 +132,13 @@ echo "N" > /sys/module/printk/parameters/console_suspend
 # Set GPU default/idle power level to 7.
 echo 7 > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
 
-# Set the optimal read-ahead value for all MMC blocks.
+# Set the optimal read-ahead value for all blocks.
 for block_device in /sys/block/*
 do
-    echo 256 > $block_device/queue/read_ahead_kb
+    echo 128 > $block_device/queue/read_ahead_kb
 done
 
-# Switch the I/O scheduler for the main MMC blocks.
+# Switch the I/O scheduler for the main blocks.
 echo "cfq" > /sys/block/sda/queue/scheduler
 echo "cfq" > /sys/block/sde/queue/scheduler
 
