@@ -673,18 +673,6 @@ service qcom-post-boot /system/bin/sh /system/bin/init.qcom.post_boot.sh
     disabled
     oneshot
 
-# ATFW
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
-
-on property:persist.radio.atfwd.start=false
-    stop atfwd
-
-on property:radio.atfwd.start=false
-    stop atfwd
-
 # HostAPD
 service hostapd /system/bin/hostapd /data/hostapd/hostapd.conf
     class late_start
