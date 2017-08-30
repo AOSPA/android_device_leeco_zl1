@@ -13,35 +13,42 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
+ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
-telephony.lteOnGsmDevice=1
-persist.radio.apm_sim_not_pwdn=1
-persist.radio.custom_ecc=1
-persist.radio.sib16_support=1
-persist.radio.ignore_dom_time=10
-persist.radio.csvt.enabled=false
+persist.radio.is_wps_enabled=true
+persist.volte_enalbed_by_hw=1
+persist.radio.data_ltd_sys_ind=1
 persist.radio.rat_on=combine
-persist.radio.mt_sms_ack=20
-persist.radio.force_on_dc=true
+telephony.lteOnGsmDevice=1
+persist.radio.ignore_dom_time=10
 
-# IMS/VoLTE
-persist.volte_enabled_by_hw=1
-persist.radio.cs_srv_type=0
-persist.radio.jbims=true
-persist.radio.calls.on.ims=true
+# Network
+ro.use_data_netmgrd=true
+persist.data.qmi.adb_logmask=0
 persist.data.iwlan.enable=true
-persist.rcs.supported=1
-persist.radio.domain.ps=false
-persist.radio.VT_HYBRID_ENABLE=1
-persist.radio.VT_ENABLE=1
-persist.radio.REVERSE_QMI=0
-persist.radio.ROTATION_ENABLE=1
+persist.data.netmgrd.qos.enable=true
+persist.data.mode=concurrent
 
-# DPM
-persist.data.dpm.enable=true
+# RmNet
+persist.rmnet.data.enable=true
+persist.data.wda.enable=true
+persist.data.df.dl_mode=5
+persist.data.df.ul_mode=5
+persist.data.df.agg.dl_pkt=10
+persist.data.df.agg.dl_size=4096
+persist.data.df.mux_count=8
+persist.data.df.iwlan_mux=9
+persist.data.df.dev_name=rmnet_usb0
 
-# RST
+# TCP
 persist.data.tcp_rst_drop=true
+
+# IMS
+service.qti.ims.enabled=1
+persist.dbg.ims_volte_enable=0
+persist.dbg.volte_avail_ovr=0
+persist.dbg.vt_avail_ovr=0
+persist.dbg.wfc_avail_ovr=0
 
 # GPS
 persist.gps.qc_nlp_in_use=1
@@ -95,11 +102,6 @@ vidc.enc.dcvs.extra-buff-count=2
 vidc.debug.perf.mode=2
 vidc.enc.disable.pq=true
 
-# NetMgrd
-ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=true
-persist.data.mode=concurrent
-
 # Time-service
 persist.timed.enable=true
 
@@ -115,24 +117,12 @@ persist.bt.enableAptXHD=true
 ro.bluetooth.wipower=true
 ro.bluetooth.emb_wp_mode=true
 
-# RmNet
-persist.rmnet.data.enable=true
-persist.data.wda.enable=true
-persist.data.df.dl_mode=5
-persist.data.df.ul_mode=5
-persist.data.df.agg.dl_pkt=10
-persist.data.df.agg.dl_size=4096
-persist.data.df.mux_count=8
-persist.data.df.iwlan_mux=9
-persist.data.df.dev_name=rmnet_usb0
-
 # WFD
 persist.debug.wfd.enable=1
 persist.sys.wfd.virtual=0
 
 # SDM
 sdm.debug.disable_rotator_split=1
-#sdm.debug.downscale_external=1
 sdm.perf_hint_window=50
 
 # NFC
