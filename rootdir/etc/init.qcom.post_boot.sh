@@ -148,9 +148,6 @@ if [ "$(getprop ro.crypto.state)" = "encrypted" ]; then
     echo "cfq" > /sys/block/dm-1/queue/scheduler
 fi;
 
-# Notify the system property that we changed the I/O scheduler.
-setprop sys.io.scheduler cfq
-
 # Starting the I/O prefetcher service.
 start iop
 
