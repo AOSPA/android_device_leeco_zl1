@@ -160,9 +160,6 @@ sys.games.gt.prof=1
 # Fingerprint
 persist.qfp=false
 
-# Battery
-ro.cutoff_voltage_mv=3250
-
 # Service Locator
 persist.sys.pd_enable=0
 
