@@ -324,14 +324,3 @@ on charger
     wait /dev/block/bootdevice/by-name/system
     mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
     start hvdcp_opti
-
-# NVM
-service nvm_service /system/bin/nvm_service
-    class core
-    oneshot
-    user root
-    group root
-    disabled
-
-on property:sys.boot_completed=1
-    start nvm_service
