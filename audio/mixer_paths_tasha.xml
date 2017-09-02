@@ -51,35 +51,35 @@
     <ctl name="LINEOUT4 Volume" value="13" />
     <ctl name="HPHL Volume" value="20" />
     <ctl name="HPHR Volume" value="20" />
-    <ctl name="RX0 Digital Volume" value="84" />
-    <ctl name="RX1 Digital Volume" value="84" />
-    <ctl name="RX2 Digital Volume" value="84" />
-    <ctl name="RX3 Digital Volume" value="84" />
-    <ctl name="RX4 Digital Volume" value="84" />
-    <ctl name="RX5 Digital Volume" value="84" />
-    <ctl name="RX6 Digital Volume" value="84" />
-    <ctl name="RX7 Digital Volume" value="84" />
-    <ctl name="RX8 Digital Volume" value="84" />
-    <ctl name="ADC1 Volume" value="12" />
-    <ctl name="ADC2 Volume" value="12" />
-    <ctl name="ADC3 Volume" value="0" />
-    <ctl name="ADC4 Volume" value="0" />
-    <ctl name="ADC5 Volume" value="12" />
-    <ctl name="ADC6 Volume" value="12" />
-    <ctl name="DEC0 Volume" value="84" />
-    <ctl name="DEC1 Volume" value="84" />
-    <ctl name="DEC2 Volume" value="84" />
-    <ctl name="DEC3 Volume" value="84" />
-    <ctl name="DEC4 Volume" value="84" />
-    <ctl name="DEC5 Volume" value="84" />
-    <ctl name="DEC6 Volume" value="84" />
-    <ctl name="DEC7 Volume" value="84" />
-    <ctl name="DEC8 Volume" value="84" />
+    <ctl name="RX0 Digital Volume" value="92" />
+    <ctl name="RX1 Digital Volume" value="92" />
+    <ctl name="RX2 Digital Volume" value="92" />
+    <ctl name="RX3 Digital Volume" value="92" />
+    <ctl name="RX4 Digital Volume" value="92" />
+    <ctl name="RX5 Digital Volume" value="92" />
+    <ctl name="RX6 Digital Volume" value="92" />
+    <ctl name="RX7 Digital Volume" value="92" />
+    <ctl name="RX8 Digital Volume" value="92" />
+    <ctl name="ADC1 Volume" value="16" />
+    <ctl name="ADC2 Volume" value="16" />
+    <ctl name="ADC3 Volume" value="16" />
+    <ctl name="ADC4 Volume" value="16" />
+    <ctl name="ADC5 Volume" value="16" />
+    <ctl name="ADC6 Volume" value="16" />
+    <ctl name="DEC0 Volume" value="92" />
+    <ctl name="DEC1 Volume" value="92" />
+    <ctl name="DEC2 Volume" value="92" />
+    <ctl name="DEC3 Volume" value="92" />
+    <ctl name="DEC4 Volume" value="92" />
+    <ctl name="DEC5 Volume" value="92" />
+    <ctl name="DEC6 Volume" value="92" />
+    <ctl name="DEC7 Volume" value="92" />
+    <ctl name="DEC8 Volume" value="92" />
     <ctl name="COMP1 Switch" value="1" />
     <ctl name="COMP2 Switch" value="1" />
     <ctl name="COMP7 Switch" value="1" />
     <ctl name="COMP8 Switch" value="1" />
-    <ctl name="RX HPH Mode" value="CLS_H_LP" />
+    <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
     <ctl name="SLIMBUS_3_RX Port Mixer MI2S_TX" value="0" />
     <ctl name="HDMI_RX Port Mixer MI2S_TX" value="0" />
     <ctl name="SLIMBUS_0_RX Port Mixer SLIM_0_TX" value="0" />
@@ -1857,7 +1857,6 @@
         <ctl name="Voip_Tx Mixer SLIM_0_TX_Voip" value="1" />
     </path>
 
-
     <path name="compress-voip-call bt-sco">
         <ctl name="AUX_PCM_RX_Voice Mixer Voip" value="1" />
         <ctl name="Voip_Tx Mixer AUX_PCM_TX_Voip" value="1" />
@@ -2187,9 +2186,8 @@
         <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
-    <!-- Stereo -->
     <path name="speaker">
-        <ctl name="Boost Output Voltage" value="9V" />
+        <ctl name="Boost Output Voltage" value="10V" />
         <ctl name="Left Feedback Enable" value="ON" />
         <ctl name="Right Feedback Enable" value="ON" />
         <ctl name="Speaker Volume" value="5" />
@@ -2200,14 +2198,9 @@
     </path>
 
     <path name="speaker-stereo">
-        <ctl name="Boost Output Voltage" value="9V" />
-        <ctl name="Left Feedback Enable" value="ON" />
-        <ctl name="Right Feedback Enable" value="ON" />
-        <ctl name="Speaker Volume" value="5" />
-        <ctl name="Left Digital Gain" value="56" />
-        <ctl name="Right Digital Gain" value="56" />
-        <ctl name="Left Channel Enable" value="1" />
-        <ctl name="Right Channel Enable" value="1" />
+        <path name="speaker" />
+        <ctl name="Left Digital Gain" value="64" />
+        <ctl name="Right Digital Gain" value="72" />
     </path>
 
     <path name="speaker-liquid">
@@ -2220,7 +2213,6 @@
         <ctl name="RX INT8 VBAT SPKRR VBAT Enable" value="1" />
     </path>
 
-    <!-- Mono -->
     <path name="speaker-mono">
         <ctl name="Boost Output Voltage" value="10V" />
         <ctl name="Right Feedback Enable" value="ON" />
@@ -2333,11 +2325,11 @@
     </path>
 
     <path name="handset">
-        <ctl name="Boost Output Voltage" value="6.5V" />
-        <ctl name="Left Feedback Enable" value="OFF" />
+        <ctl name="Boost Output Voltage" value="9V" />
+        <ctl name="Left Feedback Enable" value="ON" />
         <ctl name="Right Feedback Enable" value="OFF" />
         <ctl name="Speaker Volume" value="1" />
-        <ctl name="Left Digital Gain" value="42" />
+        <ctl name="Left Digital Gain" value="56" />
         <ctl name="Right Digital Gain" value="0" />
         <ctl name="Left Channel Enable" value="1" />
         <ctl name="Right Channel Enable" value="0" />
@@ -2345,7 +2337,7 @@
 
     <path name="handset-mic">
         <path name="adc1" />
-        <ctl name="ADC1 Volume" value="12" />
+        <ctl name="ADC1 Volume" value="16" />
     </path>
 
     <path name="handset-mic-db">
