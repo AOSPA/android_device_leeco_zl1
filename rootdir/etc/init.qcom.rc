@@ -732,10 +732,6 @@ service yep_qmi_server /system/bin/yep_qmi_server
     class core
     user root
 
-service yep_diag /system/bin/yepdiag
-    class core
-    user root
-
 # Post-boot
 on property:sys.boot_completed=1
     start qcom-post-boot
