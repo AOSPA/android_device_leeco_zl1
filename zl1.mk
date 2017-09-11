@@ -196,10 +196,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sec_config:system/etc/sec_config
 
-# SPN
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/spn-conf.xml:system/etc/spn-conf.xml
-
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl
